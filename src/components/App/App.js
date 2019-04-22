@@ -56,7 +56,7 @@ class App extends Component {
               component={InfoPage}
             />
             {/* If none of the other routes matched, we will show a 404. */}
-            <Route render={() => <h1>404</h1>} />
+            <Route render={() => <h1>Error 404 View (Page Doesn't Exist)</h1>} />
           </Switch>
           <Footer />
         </div>
