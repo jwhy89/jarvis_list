@@ -80,7 +80,7 @@ INSERT INTO "stuff" ("name", "description", "last_used", "price", "image_url", "
 Values ('Antiquity', 'Futsunomitama no Tsurugi; the Futsunomitama Sword', '04-22-2019', null, null, 1, 1, null, 2, 1, 2, true);
 
 -- GET REQUEST
-SELECT "stuff"."name" AS "stuff_name", "stuff"."description", "stuff"."quantity", "quantity_type"."type" AS "type", "physical_or_digital"."physical_state", "stuff"."last_used", "status"."status", "stuff"."active"
+SELECT "stuff"."id", "stuff"."name" AS "stuff_name", "stuff"."description", "stuff"."quantity", "quantity_type"."type" AS "type", "physical_or_digital"."physical_state", "stuff"."last_used", "status"."status", "stuff"."active"
 FROM "stuff"
 JOIN "physical_or_digital" ON "stuff"."physical_or_digital_id" = "physical_or_digital"."id"
 JOIN "quantity_type" ON "stuff"."quantity_type_id" =  "quantity_type"."id"

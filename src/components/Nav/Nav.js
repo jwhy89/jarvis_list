@@ -7,7 +7,8 @@ import './Nav.css';
 const Nav = (props) => (
   <div className="nav">
     <Link to="/home">
-      <h2 className="nav-title">Prime Solo Project</h2>
+      {/* LOOK INTO CONDITIONAL RENDORING FOR NAME'S ENDING WITH S */}
+      <h2 className="nav-title">{ props.user.username }'s List</h2>
     </Link>
     <div className="nav-right">
       <Link className="nav-link" to="/home">
