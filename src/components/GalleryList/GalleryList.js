@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { HashRouter as Router, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -10,6 +10,12 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import withMobileDialog from '@material-ui/core/withMobileDialog';
 
 // styling with material ui
 const styles = theme => ({
@@ -30,19 +36,32 @@ const styles = theme => ({
 });
 
 // stateless component to render materia ui table
-function GalleryList(props) {
-  const { classes } = props;
+class GalleryList extends Component {
+    state = {
+        open: false,
+      };
+    
+      handleClickOpen = () => {
+        this.setState({ open: true });
+      };
+    
+      handleClose = () => {
+        this.setState({ open: false });
+      };
 
-   // function to delete project with reducer
-   // had to map the project id into the arrow button 
-   // no state on component to access
-   function deleteStuff(stuffID) {
-      console.log(stuffID);
-      props.dispatch({
-          type: 'DELETE_STUFF',
-          payload: stuffID
-      });
-  }
+    // function to delete project with reducer
+    // had to map the project id into the arrow button 
+    // no state on component to access
+      deleteStuff = (event) => {
+        
+        console.log(event.target.getAttribute('value'));
+        // this.props.dispatch({
+        //     type: 'DELETE_STUFF',
+        //     payload: event.target.name
+        // });
+    }
+render() {
+    const { classes, fullScreen } = this.props;
 
   return (
         <section>
@@ -51,19 +70,60 @@ function GalleryList(props) {
             <TableHead>
             <TableRow>
                 <TableCell>Stuff Name</TableCell>
+                <TableCell>Description</TableCell>
+                <TableCell>Quantity</TableCell>
+                <TableCell>Type</TableCell>
+                <TableCell>Status</TableCell>
                 <TableCell align="right">{'\u00A0'}</TableCell>
             </TableRow>
             </TableHead>
             <TableBody>
-            {props.reduxState.stuff.map(stuffItem => (
+            {this.props.reduxState.stuff.map(stuffItem => (
                 <TableRow key={stuffItem.id}>
                 <TableCell component="th" scope="project">
                     {stuffItem.stuff_name}
                 </TableCell>
+                <TableCell component="th" scope="project">
+                    {stuffItem.description}
+                </TableCell>
+                <TableCell component="th" scope="project">
+                    {stuffItem.quantity}
+                </TableCell>
+                <TableCell component="th" scope="project">
+                    {stuffItem.type}
+                </TableCell>
+                <TableCell component="th" scope="project">
+                    {stuffItem.status}
+                </TableCell>
                 <TableCell align="right">
-                    <Button type="button" className={classes.button}
+                    {/* <Button type="button" className={classes.button}
                     onClick={() => deleteStuff(stuffItem.id)}>DELETE
+                    </Button> */}
+                    <Button variant="outlined" color="primary" onClick={this.handleClickOpen}>
+                    Delete
                     </Button>
+                    <Dialog
+                    fullScreen={fullScreen}
+                    open={this.state.open}
+                    onClose={this.handleClose}
+                    aria-labelledby="responsive-dialog-title"
+                    >
+                    <DialogTitle id="responsive-dialog-title">{"Are you sure you want to delete?"}</DialogTitle>
+                    <DialogContent>
+                        <DialogContentText>
+                        Deleting your stuff will permanently remove this from your database. 
+                        You can also set your stuff to "Inactive" to keep it in your database.
+                        </DialogContentText>
+                    </DialogContent>
+                    <DialogActions>
+                        <Button onClick={this.handleClose} color="primary">
+                        Cancel
+                        </Button>
+                        <Button onClick={this.deleteStuff} value={stuffItem.id} color="primary" autoFocus>
+                        Delete
+                        </Button>
+                    </DialogActions>
+                    </Dialog>
                 </TableCell>
                 </TableRow>
             ))}
@@ -71,7 +131,8 @@ function GalleryList(props) {
         </Table>
         </Paper>
         </section>
-  );
+  )
+}
 }
 
 const mapReduxStateToProps = (reduxState) => ({
@@ -80,9 +141,11 @@ const mapReduxStateToProps = (reduxState) => ({
 
 GalleryList.propTypes = {
     classes: PropTypes.object.isRequired,
+    // fullScreen: PropTypes.bool.isRequired,
 };
 
 // export default connect(mapReduxStateToProps)(withStyles(styles)(Admin));
+// export default withMobileDialog()(GalleryList);
 
 const StyledGalleryList = withStyles(styles)(GalleryList);
 export default connect(mapReduxStateToProps)(StyledGalleryList);

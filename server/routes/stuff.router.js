@@ -4,7 +4,7 @@ const router = express.Router();
 const { rejectUnauthenticated } = require('../modules/authentication-middleware');
 
 /**
- * GET route template
+ * GET route for GalleryList
  */
 router.get('/', rejectUnauthenticated, (req, res) => {
     pool.query(`SELECT "stuff"."id", "stuff"."name" AS "stuff_name", "stuff"."description", "stuff"."quantity", "quantity_type"."type" AS "type", "physical_or_digital"."physical_state", "stuff"."last_used", "status"."status", "stuff"."active"
@@ -27,6 +27,18 @@ router.get('/', rejectUnauthenticated, (req, res) => {
  */
 router.post('/', (req, res) => {
 
+});
+
+// DELETE route for stuff
+router.delete('/:id', (req, res) => {
+    console.log('this is delete', req.params);
+    const queryText = 'DELETE FROM "stuff" WHERE id =$1';
+    pool.query(queryText, [req.params.id])
+        .then(() => { res.sendStatus(200); })
+        .catch((err) => {
+            console.log('there is an error in deleting your stuff', err);
+            res.sendStatus(500);
+        });
 });
 
 module.exports = router;
