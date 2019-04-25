@@ -7,14 +7,15 @@ const { rejectUnauthenticated } = require('../modules/authentication-middleware'
  * GET route for GalleryList
  */
 router.get('/', rejectUnauthenticated, (req, res) => {
-    pool.query(`SELECT "stuff"."id", "stuff"."name" AS "stuff_name", "stuff"."description", "stuff"."quantity", "quantity_type"."type" AS "type", "physical_or_digital"."physical_state", "stuff"."last_used", "status"."status", "stuff"."active"
-    FROM "stuff"
-    JOIN "physical_or_digital" ON "stuff"."physical_or_digital_id" = "physical_or_digital"."id"
-    JOIN "quantity_type" ON "stuff"."quantity_type_id" =  "quantity_type"."id"
-    JOIN "user" ON "stuff"."user_id" = "user"."id"
-    JOIN "status" ON "stuff"."staus_id" =  "status"."id" 
-    WHERE "stuff"."user_id" = $1
-    ORDER BY "stuff"."name" ASC;`, [req.user.id])
+    pool.query(`SELECT "stuff"."id", "stuff"."name" AS "stuff_name", "stuff"."description", "stuff"."quantity", 
+               "quantity_type"."type" AS "type", "physical_or_digital"."physical_state", "stuff"."last_used", "status"."status", "stuff"."active"
+                FROM "stuff"
+                JOIN "physical_or_digital" ON "stuff"."physical_or_digital_id" = "physical_or_digital"."id"
+                JOIN "quantity_type" ON "stuff"."quantity_type_id" =  "quantity_type"."id"
+                JOIN "user" ON "stuff"."user_id" = "user"."id"
+                JOIN "status" ON "stuff"."status_id" =  "status"."id" 
+                WHERE "stuff"."user_id" = $1
+                ORDER BY "stuff"."name" ASC;`, [req.user.id])
         .then(results => res.send(results.rows))
         .catch(error => {
             console.log('Error making SELECT for stuff:', error);
@@ -22,11 +23,68 @@ router.get('/', rejectUnauthenticated, (req, res) => {
         });
 });
 
+router.get('/pd', rejectUnauthenticated, (req, res) => {
+    const queryText = `SELECT * FROM "physical_or_digital" ORDER BY "id";`;
+    pool.query(queryText)
+      .then((result) => { 
+          res.send(result.rows);
+      })
+      .catch((err) => {
+        console.log('Error getting pd data', err);
+        res.sendStatus(500);
+      });
+});
+
+router.get('/status', (req, res) => {
+    const queryText = `SELECT * FROM "status" ORDER BY "id";`;
+    pool.query(queryText)
+      .then((result) => { 
+          res.send(result.rows);
+      })
+      .catch((err) => {
+        console.log('Error getting status data', err);
+        res.sendStatus(500);
+      });
+});
+
+router.get('/type', (req, res) => {
+    const queryText = `SELECT * FROM "quantity_type" ORDER BY "id";`;
+    pool.query(queryText)
+      .then((result) => { 
+          res.send(result.rows);
+      })
+      .catch((err) => {
+        console.log('Error getting type data', err);
+        res.sendStatus(500);
+      });
+});
 /**
  * POST route template
  */
 router.post('/', (req, res) => {
-
+    const newStuff = req.body;
+    const queryText = `INSERT INTO stuff ("name", "description", "last_used", "price", "image_url", "quantity", 
+                      "physical_or_digital_id", "quantity_type_id", "user_id", "status_id", "active")
+                      VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11)`;
+    const queryValues = [
+        newStuff.name,
+        newStuff.description,
+        newStuff.last_used,
+        newStuff.price,
+        newStuff.image_url,
+        newStuff.quantity,
+        newStuff.physical_or_digital_id,
+        newStuff.quantity_type_id,
+        newStuff.user_id,
+        newStuff.status_id,
+        newStuff.active,
+    ];
+    pool.query(queryText, queryValues)
+        .then(() => { res.sendStatus(201); })
+        .catch((err) => {
+            console.log('Error completing ADD stuff query', err);
+            res.sendStatus(500);
+        });
 });
 
 // DELETE route for stuff

@@ -31,7 +31,22 @@ function* deleteStuff(action) {
     }
 }
 
+function* addStuff(action) {
+  console.log('hit the add stuff saga', action);
+  // We really don't need the response from the POST, so could
+  try {
+    yield axios.post('/api/stuff', action.payload)
+    yield put({
+      type: 'FETCH_STUFF'
+    });
+  } catch (error) {
+    console.log(`Couldn't add stuff`, error);
+    alert(`Sorry, couldn't add the stuff. Try again later`);
+  }
+}
+
 function* stuffSaga() {
+  yield takeEvery('ADD_STUFF', addStuff);
   yield takeEvery('DELETE_STUFF', deleteStuff);
   yield takeLatest('FETCH_STUFF', fetchStuff);
 }

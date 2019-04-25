@@ -48,7 +48,7 @@ CREATE TABLE "stuff" (
 "physical_location_id" INT REFERENCES "location",
 "quantity_type_id" INT REFERENCES "quantity_type",
 "user_id" INT REFERENCES "user" NOT NULL,
-"staus_id" INT REFERENCES "status",
+"status_id" INT REFERENCES "status",
 "active" boolean
 );
 
@@ -73,11 +73,15 @@ VALUES ('unit'),
 		('quart');
 		
 -- TEST DATA
-INSERT INTO "stuff" ("name", "description", "last_used", "price", "image_url", "quantity", "physical_or_digital_id", "physical_location_id", "quantity_type_id", "user_id", "staus_id", "active")
+INSERT INTO "stuff" ("name", "description", "last_used", "price", "image_url", "quantity", "physical_or_digital_id", "physical_location_id", "quantity_type_id", "user_id", "status_id", "active")
 Values ('Harusame', 'Sword of Light: personal sword of Amidamaru and later the main medium used for Over Soul', '04-22-2019', null, null, 1, 1, null, 2, 1, 2, true);
 
-INSERT INTO "stuff" ("name", "description", "last_used", "price", "image_url", "quantity", "physical_or_digital_id", "physical_location_id", "quantity_type_id", "user_id", "staus_id", "active")
-Values ('Antiquity', 'Futsunomitama no Tsurugi; the Futsunomitama Sword', '04-22-2019', null, null, 1, 1, null, 2, 1, 2, true);
+INSERT INTO "stuff" ("name", "description", "last_used", "price", "image_url", "quantity", "physical_or_digital_id", "physical_location_id", "quantity_type_id", "user_id", "status_id", "active")
+Values ('Antiquity', 'Futsunomitama no Tsurugi; the Futsunomitama Sword', '04-22-2019', null, null, 1, 1, null, 2, 1, 4, true);
+
+INSERT INTO "stuff" ("name", "description", "last_used", "price", "image_url", "quantity", "physical_or_digital_id", "physical_location_id", "quantity_type_id", "user_id", "status_id", "active")
+Values ('Shoulder Guard', 'shoulder guard and arm shield', '04-24-2019', null, null, 1, 1, null, 2, 1, 1, true);
+
 
 -- GET REQUEST
 SELECT "stuff"."id", "stuff"."name" AS "stuff_name", "stuff"."description", "stuff"."quantity", "quantity_type"."type" AS "type", "physical_or_digital"."physical_state", "stuff"."last_used", "status"."status", "stuff"."active"
@@ -85,7 +89,7 @@ FROM "stuff"
 JOIN "physical_or_digital" ON "stuff"."physical_or_digital_id" = "physical_or_digital"."id"
 JOIN "quantity_type" ON "stuff"."quantity_type_id" =  "quantity_type"."id"
 JOIN "user" ON "stuff"."user_id" = "user"."id"
-JOIN "status" ON "stuff"."staus_id" =  "status"."id" 
+JOIN "status" ON "stuff"."status_id" =  "status"."id" 
 WHERE "stuff"."user_id" = $1
 ORDER BY "stuff"."name" ASC;
 
