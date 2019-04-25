@@ -29,7 +29,7 @@ const styles = theme => ({
   },
   button: {
       margin: theme.spacing.unit,
-      background: 'linear-gradient(360deg, #99D22B 10%, #FBFF00 360%)',
+      background: 'linear-gradient(315deg, #a40606 0%, #d98324 74%)',
       color: 'white',
       textColor: 'white',
   },
@@ -52,8 +52,8 @@ class GalleryList extends Component {
     // had to map the project id into the arrow button 
     // no state on component to access
       deleteStuff = (event) => {
-        console.log(event.currentTarget.name);
-        this.props.dispatch( { type: 'DELETE_STUFF', payload: event.currentTarget.name } );
+        console.log(event.currentTarget.value);
+        this.props.dispatch( { type: 'DELETE_STUFF', payload: event.currentTarget.value } );
         this.handleClose();
       }
     
@@ -76,7 +76,7 @@ render() {
             </TableHead>
             <TableBody>
             {this.props.reduxState.stuff.map(stuffItem => (
-                <TableRow key={stuffItem.id}>
+                <TableRow key={stuffItem.id} name={stuffItem.id}>
                 <TableCell component="th" scope="project">
                     {stuffItem.stuff_name}
                 </TableCell>
@@ -96,13 +96,14 @@ render() {
                     {/* <Button type="button" className={classes.button}
                     onClick={() => deleteStuff(stuffItem.id)}>DELETE
                     </Button> */}
-                    {/* <Button 
-                    onClick={this.deleteStuff} name={stuffItem.id}>DELETE
-                    </Button> */}
-                    <Button variant="outlined" color="primary" onClick={this.handleClickOpen}>
+                    <Button className={classes.button}
+                    onClick={this.deleteStuff} value={stuffItem.id}>DELETE
+                    </Button>
+                    {/* <Button variant="outlined" color="primary"  value={stuffItem.id} onClick={this.handleClickOpen}>
                     Delete
                     </Button>
                     <Dialog
+                    value={stuffItem.id}
                     fullScreen={fullScreen}
                     open={this.state.open}
                     onClose={this.handleClose}
@@ -116,15 +117,15 @@ render() {
                         You can also set your stuff to "Inactive" to keep it in your database.
                         </DialogContentText>
                     </DialogContent>
-                    <DialogActions>
+                    <DialogActions value={stuffItem.id}>
                         <Button onClick={this.handleClose} color="primary">
                         Cancel
                         </Button>
-                        <Button onClick={this.deleteStuff} name={stuffItem.id} color="primary" autoFocus>
+                        <Button onClick={this.deleteStuff} value={stuffItem.id} color="primary" autoFocus>
                         Delete
                         </Button>
                     </DialogActions>
-                    </Dialog>
+                    </Dialog> */}
                 </TableCell>
                 </TableRow>
             ))}
