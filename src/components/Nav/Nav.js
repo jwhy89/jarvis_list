@@ -7,7 +7,7 @@ import './Nav.css';
 const Nav = (props) => (
   <div className="nav">
     <Link to="/home">
-      {/* LOOK INTO CONDITIONAL RENDORING FOR NAME'S ENDING WITH S */}
+      {/* LOOK INTO CONDITIONAL RENDORING FOR NAME'S ENDING WITH S and set default to Jarvis' List*/}
       <h2 className="nav-title">{ props.user.username }'s List</h2>
     </Link>
     <div className="nav-right">

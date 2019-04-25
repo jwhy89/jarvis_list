@@ -35,7 +35,6 @@ const styles = theme => ({
   },
 });
 
-// stateless component to render materia ui table
 class GalleryList extends Component {
     state = {
         open: false,
@@ -53,13 +52,11 @@ class GalleryList extends Component {
     // had to map the project id into the arrow button 
     // no state on component to access
       deleteStuff = (event) => {
-        
-        console.log(event.target.getAttribute('value'));
-        // this.props.dispatch({
-        //     type: 'DELETE_STUFF',
-        //     payload: event.target.name
-        // });
-    }
+        console.log(event.currentTarget.name);
+        this.props.dispatch( { type: 'DELETE_STUFF', payload: event.currentTarget.name } );
+        this.handleClose();
+      }
+    
 render() {
     const { classes, fullScreen } = this.props;
 
@@ -99,6 +96,9 @@ render() {
                     {/* <Button type="button" className={classes.button}
                     onClick={() => deleteStuff(stuffItem.id)}>DELETE
                     </Button> */}
+                    {/* <Button 
+                    onClick={this.deleteStuff} name={stuffItem.id}>DELETE
+                    </Button> */}
                     <Button variant="outlined" color="primary" onClick={this.handleClickOpen}>
                     Delete
                     </Button>
@@ -111,7 +111,8 @@ render() {
                     <DialogTitle id="responsive-dialog-title">{"Are you sure you want to delete?"}</DialogTitle>
                     <DialogContent>
                         <DialogContentText>
-                        Deleting your stuff will permanently remove this from your database. 
+                        Deleting your stuff will permanently remove this from your database.
+                        <br></br>
                         You can also set your stuff to "Inactive" to keep it in your database.
                         </DialogContentText>
                     </DialogContent>
@@ -119,7 +120,7 @@ render() {
                         <Button onClick={this.handleClose} color="primary">
                         Cancel
                         </Button>
-                        <Button onClick={this.deleteStuff} value={stuffItem.id} color="primary" autoFocus>
+                        <Button onClick={this.deleteStuff} name={stuffItem.id} color="primary" autoFocus>
                         Delete
                         </Button>
                     </DialogActions>

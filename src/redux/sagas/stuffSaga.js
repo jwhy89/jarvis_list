@@ -20,10 +20,10 @@ function* fetchStuff() {
 function* deleteStuff(action) {
     console.log('hit the delete stuff saga', action);
     try {
-        yield axios.delete(`/stuff/${action.payload}`)
+        yield axios.delete(`/api/stuff/${action.payload}`)
         yield put({
             // call get request and rerender w/ new list values
-            type: 'SET_STUFF'
+            type: 'FETCH_STUFF'
         });
     } catch (error) {
         console.log(`Couldn't delete project`, error);

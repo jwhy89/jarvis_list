@@ -13,7 +13,7 @@ import Footer from '../Footer/Footer';
 
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute'
 
-import AddStuff from '../AddStuff/AddStuff';
+import AddStuffForm from '../AddStuffForm/AddStuffForm';
 import UserPage from '../UserPage/UserPage';
 import StuffDetails from '../StuffDetails/StuffDetails';
 
@@ -38,7 +38,7 @@ class App extends Component {
             <ProtectedRoute
               exact
               path="/add"
-              component={AddStuff}
+              component={AddStuffForm}
             />
             {/* For protected routes, the view could show one of several things on the same route.
             Visiting localhost:3000/home will show the UserPage if the user is logged in.

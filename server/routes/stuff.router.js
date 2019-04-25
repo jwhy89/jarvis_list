@@ -31,9 +31,10 @@ router.post('/', (req, res) => {
 
 // DELETE route for stuff
 router.delete('/:id', (req, res) => {
-    console.log('this is delete', req.params);
+    let id = req.params.id;
+    console.log(`Deleting stuff with id=${id}`);
     const queryText = 'DELETE FROM "stuff" WHERE id =$1';
-    pool.query(queryText, [req.params.id])
+    pool.query(queryText, [id])
         .then(() => { res.sendStatus(200); })
         .catch((err) => {
             console.log('there is an error in deleting your stuff', err);
