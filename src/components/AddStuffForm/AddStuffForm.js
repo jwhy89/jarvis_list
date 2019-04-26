@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
 
+const moment = require('moment');
+
 const emptyStuff = {
   name: '',
   description: '',
@@ -53,7 +55,7 @@ class AddStuffForm extends Component {
               <form onSubmit={this.handleSubmit}>
                   <br />
                   <label>
-                  Name:
+                  Stuff Name:
                   <input type="text" value={this.state.newStuff.name}
                   onChange={this.handleNameChange('name')} />
                   </label>
@@ -66,7 +68,8 @@ class AddStuffForm extends Component {
                       <br />
                   <label>
                   Last Used:
-                  <input type="date" value={this.state.newStuff.last_used}
+                  <input type="date" defaultValue={moment().format('YYYY-MM-DD')}
+                  value={this.state.newStuff.last_used}
                   onChange={this.handleNameChange('last_used')} />
                   </label>
                       <br />
