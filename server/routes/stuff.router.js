@@ -35,7 +35,7 @@ router.get('/pd', rejectUnauthenticated, (req, res) => {
       });
 });
 
-router.get('/status', (req, res) => {
+router.get('/status', rejectUnauthenticated, (req, res) => {
     const queryText = `SELECT * FROM "status" ORDER BY "id";`;
     pool.query(queryText)
       .then((result) => { 
@@ -47,7 +47,7 @@ router.get('/status', (req, res) => {
       });
 });
 
-router.get('/type', (req, res) => {
+router.get('/type', rejectUnauthenticated, (req, res) => {
     const queryText = `SELECT * FROM "quantity_type" ORDER BY "id";`;
     pool.query(queryText)
       .then((result) => { 
@@ -75,7 +75,7 @@ router.post('/', (req, res) => {
         newStuff.quantity,
         newStuff.physical_or_digital_id,
         newStuff.quantity_type_id,
-        newStuff.user_id,
+        [req.user.id],
         newStuff.status_id,
         newStuff.active,
     ];
