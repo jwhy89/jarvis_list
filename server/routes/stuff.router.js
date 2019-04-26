@@ -59,15 +59,15 @@ router.get('/type', rejectUnauthenticated, (req, res) => {
       });
 });
 /**
- * POST route template
+ * POST route for adding new stuff for database
  */
-router.post('/', (req, res) => {
+router.post('/', rejectUnauthenticated, (req, res) => {
     const newStuff = req.body;
+    const user_id = req.user.id;
     const queryText = `INSERT INTO stuff ("name", "description", "last_used", "price", "image_url", "quantity", 
-                      "physical_or_digital_id", "quantity_type_id", "user_id", "status_id", "active")
+                      "physical_or_digital_id", "quantity_type_id", "status_id", "active", "user_id")
                       VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11)`;
-    const queryValues = [
-        newStuff.name,
+    pool.query(queryText, [newStuff.name,
         newStuff.description,
         newStuff.last_used,
         newStuff.price,
@@ -75,11 +75,9 @@ router.post('/', (req, res) => {
         newStuff.quantity,
         newStuff.physical_or_digital_id,
         newStuff.quantity_type_id,
-        [req.user.id],
         newStuff.status_id,
         newStuff.active,
-    ];
-    pool.query(queryText, queryValues)
+        user_id])
         .then(() => { res.sendStatus(201); })
         .catch((err) => {
             console.log('Error completing ADD stuff query', err);

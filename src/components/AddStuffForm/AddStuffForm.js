@@ -10,7 +10,6 @@ const emptyStuff = {
   quantity: 1,
   physical_or_digital_id: 1,
   quantity_type_id: 1,
-  user_id: 1,
   status_id: 1,
   active: true
 }
@@ -52,12 +51,6 @@ class AddStuffForm extends Component {
               <h3>Add stuff:</h3>
               <pre>{JSON.stringify(this.state)}</pre>
               <form onSubmit={this.handleSubmit}>
-                  <br />
-                  <label>
-                  User ID:
-                  <input type="number" value={this.state.newStuff.user_id}
-                  onChange={this.handleNameChange('user_id')} />
-                  </label>
                   <br />
                   <label>
                   Name:
