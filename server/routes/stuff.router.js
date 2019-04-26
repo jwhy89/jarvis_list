@@ -23,6 +23,26 @@ router.get('/', rejectUnauthenticated, (req, res) => {
         });
 });
 
+// get route for stuff details
+router.get('/details/:id', rejectUnauthenticated, (req, res) => {
+    const user_id = req.user.id;
+    const id = req.params.id
+    console.log(`Stuff details with id=${id}`);
+    const queryText = `SELECT "stuff"."id", "stuff"."name" AS "stuff_name", "stuff"."description", "stuff"."quantity", "quantity_type"."type" AS "type", "physical_or_digital"."physical_state", "stuff"."last_used", "status"."status", "stuff"."active", "stuff"."price", "stuff"."image_url"
+    FROM "stuff"
+    JOIN "physical_or_digital" ON "stuff"."physical_or_digital_id" = "physical_or_digital"."id"
+    JOIN "quantity_type" ON "stuff"."quantity_type_id" =  "quantity_type"."id"
+    JOIN "user" ON "stuff"."user_id" = "user"."id"
+    JOIN "status" ON "stuff"."status_id" =  "status"."id" 
+    WHERE "stuff"."id" = $1 AND "stuff"."user_id" = $2;`;
+    pool.query(queryText, [id, user_id])
+        .then((result) => { res.send(result.rows); })
+        .catch((err) => {
+            console.log('there is an error in getting your stuff details', err);
+            res.sendStatus(500);
+        });
+});
+
 router.get('/pd', rejectUnauthenticated, (req, res) => {
     const queryText = `SELECT * FROM "physical_or_digital" ORDER BY "id";`;
     pool.query(queryText)
