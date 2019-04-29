@@ -4,6 +4,10 @@ import { connect } from 'react-redux';
 import LogOutButton from '../LogOutButton/LogOutButton';
 import './Nav.css';
 
+// look into random number of array
+// var randomize = props.stuff[Math.floor(Math.random() * props.stuff.length)];
+// console.log(props.user.id);
+
 const Nav = (props) => (
   <div className="nav">
     <Link to="/home">
@@ -40,6 +44,7 @@ const Nav = (props) => (
 // const mapStateToProps = ({ user }) => ({ user });
 const mapStateToProps = state => ({
   user: state.user,
+  stuff: state.stuff
 });
 
 export default connect(mapStateToProps)(Nav);
