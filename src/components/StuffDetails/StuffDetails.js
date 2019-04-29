@@ -20,6 +20,7 @@ class StuffDetails extends Component {
     return (
       <div>
         <h1>{stuff.stuff_name}</h1>
+        <button>Edit</button>
         <ul>
           <li>ID: {stuff.id}</li>
           <li>Stuff Name: {stuff.stuff_name}</li>

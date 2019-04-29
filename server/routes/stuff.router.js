@@ -80,6 +80,7 @@ router.get('/type', rejectUnauthenticated, (req, res) => {
         res.sendStatus(500);
       });
 });
+
 /**
  * POST route for adding new stuff for database
  */
@@ -99,6 +100,34 @@ router.post('/', rejectUnauthenticated, (req, res) => {
         newStuff.quantity_type_id,
         newStuff.status_id,
         newStuff.active,
+        user_id])
+        .then(() => { res.sendStatus(201); })
+        .catch((err) => {
+            console.log('Error completing ADD stuff query', err);
+            res.sendStatus(500);
+        });
+});
+
+/**
+ * PUT route for editing stuff for database
+ */
+router.put('/:id', rejectUnauthenticated, (req, res) => {
+    const editStuff = req.body;
+    const user_id = req.user.id;
+    const queryText = `UPDATE stuff SET "name" = $1, "description" = $2, "last_used" = $3, "price" = $4, "image_url" = $5, "quantity" = $6, 
+                      "physical_or_digital_id" = $7, "quantity_type_id" = $8, "status_id" = $9, "active" = $10
+                      WHERE "id"= $11 AND "user_id" = $12`;
+    pool.query(queryText, [editStuff.name,
+        editStuff.description,
+        editStuff.last_used,
+        editStuff.price,
+        editStuff.image_url,
+        editStuff.quantity,
+        editStuff.physical_or_digital_id,
+        editStuff.quantity_type_id,
+        editStuff.status_id,
+        editStuff.active,
+        editStuff.id,
         user_id])
         .then(() => { res.sendStatus(201); })
         .catch((err) => {
