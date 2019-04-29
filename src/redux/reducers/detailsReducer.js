@@ -3,6 +3,8 @@ const detailsReducer = (state = {}, action) => {
       case 'SET_DETAILS':
         console.log('in details reducer', action.payload.data[0]);
         return action.payload.data[0];
+      case 'UNSET_DETAILS':
+        return {};
       default:
         return state;
     }
