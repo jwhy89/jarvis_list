@@ -2,10 +2,38 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
+const moment = require('moment');
+
 class StuffDetails extends Component {
+
+  state ={
+    currentlyEditing: false,
+      editStuff: {},
+  }
 
   componentDidMount() {
     this.props.dispatch({ type: 'FETCH_DETAILS', payload: this.props.match.params.id })
+    console.log('in componentdidmount', this.props.reduxState.details);
+  }
+
+  componentDidUpdate(prevProps) {
+    if (this.props.reduxState.details !== prevProps.reduxState.details) {
+      this.setState({
+        editStuff: {
+          name: this.props.reduxState.details.name,
+          description: this.props.reduxState.details.description,
+          last_used: moment(this.props.reduxState.details.last_used).format('YYYY-MM-DD'),
+          price: this.props.reduxState.details.price,
+          image_url: this.props.reduxState.details.image_url,
+          quantity: this.props.reduxState.details.quantity,
+          physical_or_digital_id: this.props.reduxState.details.physical_or_digital_id,
+          quantity_type_id: this.props.reduxState.details.quantity_type_id,
+          status_id: this.props.reduxState.details.status_id,
+          active: this.props.reduxState.details.active,
+          id: this.props.reduxState.details.id,
+      }
+      })
+    }
   }
 
   deleteStuff = () => {
@@ -14,16 +42,54 @@ class StuffDetails extends Component {
     console.log('in delete stuff', this.props.reduxState.details.id)
   }
 
+  handleEdit = (event) => {
+    console.log('in handleEdit');
+    let stuffId = event.currentTarget.value;
+    console.log(stuffId);
+    this.setState({
+      currentlyEditing: true,
+    })
+    console.log(this.state.currentlyEditing);
+  }
+
+  handleEditSubmit = (event) => {
+    console.log('in handleEditSubmit');
+    this.setState({
+        currentlyEditing: false,
+    })
+    this.props.dispatch({type:'EDIT_STUFF', payload: this.state.editStuff});
+  }
+
+  handleChange = propertyName => {
+    return(event) =>{
+    
+    this.setState({
+        editStuff: {
+            ...this.state.editStuff,
+            [propertyName]: event.target.value,
+            // stuff_id: this.state.editStuff.id,
+
+        }
+    });
+    }
+  }
+
   render() {
     const stuff = this.props.reduxState.details;
-    console.log(this.props.reduxState.details)
+    console.log(this.state.editStuff.name)
+    console.log(this.state.editStuff)
     return (
       <div>
-        <h1>{stuff.stuff_name}</h1>
-        <button>Edit</button>
+        <h1>{JSON.stringify(this.props.reduxState.details.name)}</h1>
+        <h1>{stuff.name}</h1>
+        { this.state.currentlyEditing === true ? 
+          <button onClick={this.handleEditSubmit}>Update</button> :
+          <button onClick={this.handleEdit}>Edit</button>
+        }
         <ul>
           <li>ID: {stuff.id}</li>
-          <li>Stuff Name: {stuff.stuff_name}</li>
+          {this.state.currentlyEditing === true ? <input onChange={this.handleChange('name')} defaultValue={`${stuff.name}`}/> : 
+          <li>Stuff Name: {stuff.name}</li>}
           <li>Description: {stuff.description}</li>
           <li>Quantity: {stuff.quantity}</li>
           <li>Type: {stuff.type}</li>

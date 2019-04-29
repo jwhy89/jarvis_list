@@ -59,6 +59,7 @@ class GalleryList extends Component {
       }
     
       viewDetails = (event) => {
+        // this.props.dispatch({ type: 'FETCH_DETAILS', payload: event.currentTarget.value })
         this.props.history.push(`/${event.currentTarget.value}`);
       }
 

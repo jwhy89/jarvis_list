@@ -28,9 +28,11 @@ router.get('/details/:id', rejectUnauthenticated, (req, res) => {
     const user_id = req.user.id;
     const id = req.params.id
     console.log(`Stuff details with id=${id}`);
-    const queryText = `SELECT "stuff"."id", "stuff"."name" AS "stuff_name", "stuff"."description", 
-                    "stuff"."quantity", "quantity_type"."type" AS "type", "physical_or_digital"."physical_state", 
-                    "stuff"."last_used", "status"."status", "stuff"."active", "stuff"."price", "stuff"."image_url"
+    const queryText = `SELECT "stuff"."id", "stuff"."name", "stuff"."description", 
+                    "stuff"."quantity", "quantity_type"."type" AS "type", "stuff"."quantity_type_id",
+                    "stuff"."physical_or_digital_id", "physical_or_digital"."physical_state", 
+                    "stuff"."physical_location_id", "stuff"."status_id", "stuff"."last_used", 
+                    "status"."status", "stuff"."active", "stuff"."price", "stuff"."image_url"
     FROM "stuff"
     JOIN "physical_or_digital" ON "stuff"."physical_or_digital_id" = "physical_or_digital"."id"
     JOIN "quantity_type" ON "stuff"."quantity_type_id" =  "quantity_type"."id"
