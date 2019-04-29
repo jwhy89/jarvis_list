@@ -113,8 +113,9 @@ router.post('/', rejectUnauthenticated, (req, res) => {
 /**
  * PUT route for editing stuff for database
  */
-router.put('/:id', rejectUnauthenticated, (req, res) => {
+router.put('/details/:id', rejectUnauthenticated, (req, res) => {
     const editStuff = req.body;
+    console.log('in put router', editStuff);
     const user_id = req.user.id;
     const queryText = `UPDATE stuff SET "name" = $1, "description" = $2, "last_used" = $3, "price" = $4, "image_url" = $5, "quantity" = $6, 
                       "physical_or_digital_id" = $7, "quantity_type_id" = $8, "status_id" = $9, "active" = $10

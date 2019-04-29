@@ -12,8 +12,21 @@ function* fetchDetails(action) {
     }
 }
 
+function* editDetails(action) {
+  console.log('in edit details saga', action.payload);
+  try {
+    // Trying to edit stuff details
+    yield axios.put(`/api/stuff/details/${action.payload.id}`, action.payload);
+    yield put({ type: 'FETCH_DETAILS', payload: action.payload.id });
+  }
+  catch (error) {
+    console.log(`Couldn't EDIT stuff details`, error);
+  }
+}
+
 function* detailsSaga() {
   yield takeLatest('FETCH_DETAILS', fetchDetails);
+  yield takeLatest('EDIT_DETAILS', editDetails);
 }
 
 export default detailsSaga;

@@ -44,7 +44,7 @@ const Nav = (props) => (
 // const mapStateToProps = ({ user }) => ({ user });
 const mapStateToProps = state => ({
   user: state.user,
-  stuff: state.stuff
+  // stuff: state.stuff
 });
 
 export default connect(mapStateToProps)(Nav);

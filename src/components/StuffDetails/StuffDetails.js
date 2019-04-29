@@ -57,7 +57,7 @@ class StuffDetails extends Component {
     this.setState({
         currentlyEditing: false,
     })
-    this.props.dispatch({type:'EDIT_STUFF', payload: this.state.editStuff});
+    this.props.dispatch({type:'EDIT_DETAILS', payload: this.state.editStuff});
   }
 
   handleChange = propertyName => {
@@ -77,10 +77,10 @@ class StuffDetails extends Component {
   render() {
     const stuff = this.props.reduxState.details;
     console.log(this.state.editStuff.name)
-    console.log(this.state.editStuff)
+    // console.log(this.state.editStuff)
     return (
       <div>
-        <h1>{JSON.stringify(this.props.reduxState.details.name)}</h1>
+        {/* <h1>{JSON.stringify(this.props.reduxState.details.name)}</h1> */}
         <h1>{stuff.name}</h1>
         { this.state.currentlyEditing === true ? 
           <button onClick={this.handleEditSubmit}>Update</button> :

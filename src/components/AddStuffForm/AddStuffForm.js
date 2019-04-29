@@ -69,7 +69,7 @@ class AddStuffForm extends Component {
                   <label>
                   Last Used:
                   <input type="date" defaultValue={moment().format('YYYY-MM-DD')}
-                  value={this.state.newStuff.last_used}
+                  // value={this.state.newStuff.last_used}
                   onChange={this.handleNameChange('last_used')} />
                   </label>
                       <br />
