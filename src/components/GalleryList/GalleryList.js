@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 // import { HashRouter as Router, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
@@ -36,17 +37,17 @@ const styles = theme => ({
 });
 
 class GalleryList extends Component {
-    state = {
-        open: false,
-      };
+    // state = {
+    //     open: false,
+    //   };
     
-      handleClickOpen = () => {
-        this.setState({ open: true });
-      };
+    //   handleClickOpen = () => {
+    //     this.setState({ open: true });
+    //   };
     
-      handleClose = () => {
-        this.setState({ open: false });
-      };
+    //   handleClose = () => {
+    //     this.setState({ open: false });
+    //   };
 
     // function to delete project with reducer
     // had to map the project id into the arrow button 
@@ -54,9 +55,13 @@ class GalleryList extends Component {
       deleteStuff = (event) => {
         console.log(event.currentTarget.value);
         this.props.dispatch( { type: 'DELETE_STUFF', payload: event.currentTarget.value } );
-        this.handleClose();
+        // this.handleClose();
       }
     
+      viewDetails = (event) => {
+        this.props.history.push(`/${event.currentTarget.value}`);
+      }
+
 render() {
     const { classes, fullScreen } = this.props;
 
@@ -66,6 +71,7 @@ render() {
         <Table className={classes.table}>
             <TableHead>
             <TableRow>
+                <TableCell align="left">{'\u00A0'}</TableCell>
                 <TableCell>Stuff Name</TableCell>
                 <TableCell>Description</TableCell>
                 <TableCell>Quantity</TableCell>
@@ -77,6 +83,11 @@ render() {
             <TableBody>
             {this.props.reduxState.stuff.map(stuffItem => (
                 <TableRow key={stuffItem.id} name={stuffItem.id}>
+                <TableCell component="th" scope="project">
+                    <Button className={classes.button} align="left"
+                    onClick={this.viewDetails} value={stuffItem.id}>DETAILS
+                    </Button>
+                </TableCell>
                 <TableCell component="th" scope="project">
                     {stuffItem.stuff_name}
                 </TableCell>
@@ -150,4 +161,4 @@ GalleryList.propTypes = {
 // export default withMobileDialog()(GalleryList);
 
 const StyledGalleryList = withStyles(styles)(GalleryList);
-export default connect(mapReduxStateToProps)(StyledGalleryList);
+export default withRouter(connect(mapReduxStateToProps)(StyledGalleryList));

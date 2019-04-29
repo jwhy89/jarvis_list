@@ -6,6 +6,7 @@ import stuff from './stuffReducer';
 import pd from './pdReducer';
 import status from './statusReducer';
 import type from './typeReducer';
+import details from './detailsReducer';
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -20,7 +21,8 @@ const rootReducer = combineReducers({
   stuff,
   pd,
   status,
-  type
+  type,
+  details
 });
 
 export default rootReducer;

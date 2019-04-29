@@ -11,7 +11,7 @@ import {connect} from 'react-redux';
 import Nav from '../Nav/Nav';
 import Footer from '../Footer/Footer';
 
-import ProtectedRoute from '../ProtectedRoute/ProtectedRoute'
+import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 
 import AddStuffForm from '../AddStuffForm/AddStuffForm';
 import UserPage from '../UserPage/UserPage';
@@ -53,7 +53,7 @@ class App extends Component {
             they will see the info page instead. */}
             <ProtectedRoute
               exact
-              path="/details"
+              path="/:id"
               component={StuffDetails}
             />
             {/* If none of the other routes matched, we will show a 404. */}
