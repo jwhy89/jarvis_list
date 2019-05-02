@@ -23,7 +23,7 @@ router.get('/', rejectUnauthenticated, (req, res) => {
         });
 });
 
-// get route for stuff details
+// GET route for StuffDetails
 router.get('/details/:id', rejectUnauthenticated, (req, res) => {
     const user_id = req.user.id;
     const id = req.params.id
@@ -33,12 +33,12 @@ router.get('/details/:id', rejectUnauthenticated, (req, res) => {
                     "stuff"."physical_or_digital_id", "physical_or_digital"."physical_state", 
                     "stuff"."physical_location_id", "stuff"."status_id", "stuff"."last_used", 
                     "status"."status", "stuff"."active", "stuff"."price", "stuff"."image_url"
-    FROM "stuff"
-    JOIN "physical_or_digital" ON "stuff"."physical_or_digital_id" = "physical_or_digital"."id"
-    JOIN "quantity_type" ON "stuff"."quantity_type_id" =  "quantity_type"."id"
-    JOIN "user" ON "stuff"."user_id" = "user"."id"
-    JOIN "status" ON "stuff"."status_id" =  "status"."id" 
-    WHERE "stuff"."id" = $1 AND "stuff"."user_id" = $2;`;
+                    FROM "stuff"
+                    JOIN "physical_or_digital" ON "stuff"."physical_or_digital_id" = "physical_or_digital"."id"
+                    JOIN "quantity_type" ON "stuff"."quantity_type_id" =  "quantity_type"."id"
+                    JOIN "user" ON "stuff"."user_id" = "user"."id"
+                    JOIN "status" ON "stuff"."status_id" =  "status"."id" 
+                    WHERE "stuff"."id" = $1 AND "stuff"."user_id" = $2;`;
     pool.query(queryText, [id, user_id])
         .then((result) => { res.send(result.rows); })
         .catch((err) => {
@@ -47,6 +47,8 @@ router.get('/details/:id', rejectUnauthenticated, (req, res) => {
         });
 });
 
+// GET route for physical_or_digital table
+// used to map the state of the item, if the item is a physical one or digital
 router.get('/pd', rejectUnauthenticated, (req, res) => {
     const queryText = `SELECT * FROM "physical_or_digital" ORDER BY "id";`;
     pool.query(queryText)
@@ -59,6 +61,9 @@ router.get('/pd', rejectUnauthenticated, (req, res) => {
       });
 });
 
+// GET route for status table
+// Used to map the status of the stuff
+// Status: Donate, Keep, Sell, Store, Toss
 router.get('/status', rejectUnauthenticated, (req, res) => {
     const queryText = `SELECT * FROM "status" ORDER BY "id";`;
     pool.query(queryText)
@@ -71,6 +76,9 @@ router.get('/status', rejectUnauthenticated, (req, res) => {
       });
 });
 
+// GET route for quantity_type table
+// Used to map the type of stuff
+// Quantity types include: unit, piece, bundle, container, quart
 router.get('/type', rejectUnauthenticated, (req, res) => {
     const queryText = `SELECT * FROM "quantity_type" ORDER BY "id";`;
     pool.query(queryText)

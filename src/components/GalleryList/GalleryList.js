@@ -52,16 +52,16 @@ class GalleryList extends Component {
     // function to delete project with reducer
     // had to map the project id into the arrow button 
     // no state on component to access
-      deleteStuff = (event) => {
-        console.log(event.currentTarget.value);
-        this.props.dispatch( { type: 'DELETE_STUFF', payload: event.currentTarget.value } );
-        // this.handleClose();
-      }
-    
-      viewDetails = (event) => {
-        // this.props.dispatch({ type: 'FETCH_DETAILS', payload: event.currentTarget.value })
-        this.props.history.push(`/${event.currentTarget.value}`);
-      }
+    deleteStuff = (event) => {
+    console.log(event.currentTarget.value);
+    this.props.dispatch( { type: 'DELETE_STUFF', payload: event.currentTarget.value } );
+    // this.handleClose();
+    }
+
+    // function for React Router for URL parameters for more details
+    viewDetails = (event) => {
+    this.props.history.push(`/${event.currentTarget.value}`);
+    }
 
 render() {
     const { classes, fullScreen } = this.props;

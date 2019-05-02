@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 
 const moment = require('moment');
 
+// default properties of new stuff
 const emptyStuff = {
   name: '',
   description: '',
@@ -21,12 +22,14 @@ class AddStuffForm extends Component {
     newStuff: emptyStuff
   }
 
- // load tags before rendering
+  // Load tags before rendering
   componentDidMount() {
     this.props.dispatch( {type: 'FETCH_PD'} );
     this.props.dispatch( {type: 'FETCH_STATUS'} );
     this.props.dispatch( {type: 'FETCH_TYPE'} );
   }
+
+  // Called when the input field changes
   handleNameChange = propertyName => {
       return (event) => {
       console.log('event happended')
@@ -39,6 +42,7 @@ class AddStuffForm extends Component {
   }
   }
 
+  // Called when the submit button is pressed
   handleSubmit = event => {
       event.preventDefault();
       this.props.dispatch({ type: 'ADD_STUFF', payload: this.state.newStuff })
@@ -51,7 +55,7 @@ class AddStuffForm extends Component {
       return (
           <div>
               <h3>Add stuff:</h3>
-              <pre>{JSON.stringify(this.state)}</pre>
+              {/* <pre>{JSON.stringify(this.state)}</pre> */}
               <form onSubmit={this.handleSubmit}>
                   <br />
                   <label>
@@ -91,11 +95,6 @@ class AddStuffForm extends Component {
                   onChange={this.handleNameChange('quantity')} />
                   </label>
                       <br />
-                  {/* <label>
-                  Type:
-                  <input type="text" value={this.state.newStuff.quantity_type_id}
-                  onChange={this.handleNameChange('quantity_type_id')} />
-                  </label> */}
                   <select onChange={this.handleNameChange('quantity_type_id')}>
                    <option selected disabled >Type</option>
                    {this.props.reduxState.type.map( type => 
@@ -103,11 +102,6 @@ class AddStuffForm extends Component {
                    )}
                   </select>
                   <br />
-                  {/* <label>
-                  Physical or Digital:
-                  <input type="text" value={this.state.newStuff.physical_or_digital_id}
-                  onChange={this.handleNameChange('physical_or_digital_id')} />
-                  </label> */}
                   <select onChange={this.handleNameChange('physical_or_digital_id')}>
                    <option selected disabled >Physical/Digital</option>
                    {this.props.reduxState.pd.map( physical_state => 
@@ -115,11 +109,6 @@ class AddStuffForm extends Component {
                    )}
                   </select>
                   <br />
-                  {/* <label>
-                  Status:
-                  <input type="text" value={this.state.newStuff.status_id}
-                  onChange={this.handleNameChange('status_id')} />
-                  </label> */}
                   <select onChange={this.handleNameChange('status_id')}>
                    <option selected disabled >Status</option>
                    {this.props.reduxState.status.map( status => 

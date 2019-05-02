@@ -3,7 +3,7 @@ import { put, call, takeLatest } from 'redux-saga/effects';
 
 function* fetchDetails(action) {
     try {
-      // Trying to get stuff details
+      // GET request to get stuff details using stuff ID
       const response = yield call(axios.get, `/api/stuff/details/${action.payload}`);
       yield put({ type: 'SET_DETAILS', payload: response });
     }
@@ -15,7 +15,7 @@ function* fetchDetails(action) {
 function* editDetails(action) {
   console.log('in edit details saga', action.payload);
   try {
-    // Trying to edit stuff details
+    // PUT request to edit stuff details using stuff ID and payload
     yield axios.put(`/api/stuff/details/${action.payload.id}`, action.payload);
     yield put({ type: 'FETCH_DETAILS', payload: action.payload.id });
   }

@@ -11,11 +11,14 @@ class StuffDetails extends Component {
       editStuff: {},
   }
 
+  // function to get details from database and redux state before rendoring
   componentDidMount() {
     this.props.dispatch({ type: 'FETCH_DETAILS', payload: this.props.match.params.id })
     console.log('in componentdidmount', this.props.reduxState.details);
   }
 
+  // async issue with componentDidMount
+  // used to pull stuff details into current state in component
   componentDidUpdate(prevProps) {
     if (this.props.reduxState.details !== prevProps.reduxState.details) {
       this.setState({
@@ -36,12 +39,14 @@ class StuffDetails extends Component {
     }
   }
 
+  // function to delete stuff from database
   deleteStuff = () => {
     this.props.dispatch({ type: 'DELETE_STUFF', payload: this.props.reduxState.details.id })
     this.props.history.push('/');
     console.log('in delete stuff', this.props.reduxState.details.id)
   }
 
+  // called when clicked on; will allow user to edit pre-populated field from reduxState
   handleEdit = (event) => {
     console.log('in handleEdit');
     let stuffId = event.currentTarget.value;
@@ -52,6 +57,8 @@ class StuffDetails extends Component {
     console.log(this.state.currentlyEditing);
   }
 
+  // Called when the submit button is pressed
+  // PUT request to database
   handleEditSubmit = (event) => {
     console.log('in handleEditSubmit');
     this.setState({
@@ -60,6 +67,7 @@ class StuffDetails extends Component {
     this.props.dispatch({type:'EDIT_DETAILS', payload: this.state.editStuff});
   }
 
+  // Called when the input field changes
   handleChange = propertyName => {
     return(event) =>{
     
@@ -67,8 +75,6 @@ class StuffDetails extends Component {
         editStuff: {
             ...this.state.editStuff,
             [propertyName]: event.target.value,
-            // stuff_id: this.state.editStuff.id,
-
         }
     });
     }
