@@ -92,6 +92,7 @@ class StuffDetails extends Component {
           <button onClick={this.handleEditSubmit}>Update</button> :
           <button onClick={this.handleEdit}>Edit</button>
         }
+        <img src={stuff.image_url} alt={stuff.name}/>
         <ul>
           <li>ID: {stuff.id}</li>
           {this.state.currentlyEditing === true ? <input onChange={this.handleChange('name')} defaultValue={`${stuff.name}`}/> : 

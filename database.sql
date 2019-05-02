@@ -74,14 +74,22 @@ VALUES ('unit'),
 		
 -- TEST DATA
 INSERT INTO "stuff" ("name", "description", "last_used", "price", "image_url", "quantity", "physical_or_digital_id", "physical_location_id", "quantity_type_id", "user_id", "status_id", "active")
-Values ('Harusame', 'Sword of Light: personal sword of Amidamaru and later the main medium used for Over Soul', '04-22-2019', null, null, 1, 1, null, 2, 1, 2, true);
+Values ('Harusame', 'Sword of Light: personal sword of Amidamaru and later the main medium used for Over Soul', '04-22-2019', null, 'https://vignette.wikia.nocookie.net/shamanking/images/c/c8/Harusame_Museum.jpg/revision/latest?cb=20110823122358&path-prefix=en', 1, 1, null, 2, 1, 2, true);
 
 INSERT INTO "stuff" ("name", "description", "last_used", "price", "image_url", "quantity", "physical_or_digital_id", "physical_location_id", "quantity_type_id", "user_id", "status_id", "active")
-Values ('Antiquity', 'Futsunomitama no Tsurugi; the Futsunomitama Sword', '04-22-2019', null, null, 1, 1, null, 2, 1, 4, true);
+Values ('Antiquity', 'Futsunomitama no Tsurugi; the Futsunomitama Sword', '04-23-2019', null, 'https://vignette.wikia.nocookie.net/shamanking/images/3/32/Stone_Sword.jpg/revision/latest?cb=20110823110050&path-prefix=en', 1, 1, null, 2, 1, 4, true);
 
 INSERT INTO "stuff" ("name", "description", "last_used", "price", "image_url", "quantity", "physical_or_digital_id", "physical_location_id", "quantity_type_id", "user_id", "status_id", "active")
-Values ('Shoulder Guard', 'shoulder guard and arm shield', '04-24-2019', null, null, 1, 1, null, 2, 1, 1, true);
+Values ('Shoulder Guard', 'shoulder guard and arm shield', '04-24-2019', null, 'https://vignette.wikia.nocookie.net/shamanking/images/1/1f/Amidamaru_Oversoul_2.jpg/revision/latest/scale-to-width-down/200?cb=20090513173151&path-prefix=en', 1, 1, null, 1, 1, 1, true);
 
+INSERT INTO "stuff" ("name", "description", "last_used", "price", "image_url", "quantity", "physical_or_digital_id", "physical_location_id", "quantity_type_id", "user_id", "status_id", "active")
+Values ('Shuriken', 'Sharpened, four-pronged metal stars, useful for throwing.', '03-22-2019', 5, 'https://images-na.ssl-images-amazon.com/images/I/61eJJ%2BPqfIL._SX425_.jpg', 3, 1, null, 2, 2, 3, true);
+
+INSERT INTO "stuff" ("name", "description", "last_used", "price", "image_url", "quantity", "physical_or_digital_id", "physical_location_id", "quantity_type_id", "user_id", "status_id", "active")
+Values ('Kunai', 'One of the most common tools used by shinobi. It is a black dagger with a handle wrapped in bandages and a circular end', '04-23-2019', 10, 'https://images-na.ssl-images-amazon.com/images/I/515AY9xzOcL._SX466_.jpg', 1, 1, null, 2, 2, 4, true);
+
+INSERT INTO "stuff" ("name", "description", "last_used", "price", "image_url", "quantity", "physical_or_digital_id", "physical_location_id", "quantity_type_id", "user_id", "status_id", "active")
+Values ('Forehead Protector', 'A headband composed of a metal plate and a band of cloth.', '04-23-2019', 10, 'https://ae01.alicdn.com/kf/HTB1rJ1aNFXXXXccXXXXq6xXFXXXT/Black-Naruto-Leaf-Village-Logo-Metal-Plated-Headband-Forehead-Protector-Cosplay-Accessories.jpg', 1, 1, null, 2, 2, 5, true);
 
 -- GET REQUEST
 SELECT "stuff"."id", "stuff"."name" AS "stuff_name", "stuff"."description", "stuff"."quantity", "quantity_type"."type" AS "type", "physical_or_digital"."physical_state", "stuff"."last_used", "status"."status", "stuff"."active"
