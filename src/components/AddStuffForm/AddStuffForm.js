@@ -1,7 +1,10 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
-import TextField from '@material-ui/core/TextField'
+import TextField from '@material-ui/core/TextField';
 import FormControl from '@material-ui/core/FormControl';
+import InputLabel from '@material-ui/core/InputLabel';
+import Select from '@material-ui/core/Select';
+import MenuItem from '@material-ui/core/MenuItem';
 
 const moment = require('moment');
 
@@ -58,17 +61,17 @@ class AddStuffForm extends Component {
           <div>
               <h3>Add stuff:</h3>
               {/* <pre>{JSON.stringify(this.state)}</pre> */}
-              <form onSubmit={this.handleSubmit}>
+              <FormControl onSubmit={this.handleSubmit}>
                   <br />
                   <label>
                   Stuff Name:
-                  <TextField type="text" value={this.state.newStuff.name}
+                  <TextField type="text" value={this.state.newStuff.name} placeholder="Stuff Name"
                   onChange={this.handleNameChange('name')} />
                   </label>
                       <br />
                   <label>
                   Description:
-                  <TextField type="text" value={this.state.newStuff.description}
+                  <TextField type="text" value={this.state.newStuff.description} placeholder="Description"
                   onChange={this.handleNameChange('description')} />
                   </label>
                       <br />
@@ -87,7 +90,7 @@ class AddStuffForm extends Component {
                       <br />
                   <label>
                   Image URL:
-                  <TextField type="url" value={this.state.newStuff.image_url}
+                  <TextField type="url" value={this.state.newStuff.image_url} placeholder="Image URL"
                   onChange={this.handleNameChange('image_url')} />
                   </label>
                       <br />
@@ -97,34 +100,38 @@ class AddStuffForm extends Component {
                   onChange={this.handleNameChange('quantity')} />
                   </label>
                       <br />
-                  <select onChange={this.handleNameChange('quantity_type_id')}>
-                   <option selected disabled >Type</option>
+                  <Select value={this.state.newStuff.quantity_type_id}
+                  onChange={this.handleNameChange('quantity_type_id')}>
+                   <InputLabel selected disabled >Type</InputLabel>
                    {this.props.reduxState.type.map( type => 
-                        <option  value={type.id} key={type.id}>{type.type}</option>
+                        <MenuItem  value={type.id} key={type.id}>{type.type}</MenuItem>
                    )}
-                  </select>
+                  </Select>
                   <br />
-                  <select onChange={this.handleNameChange('physical_or_digital_id')}>
-                   <option selected disabled >Physical/Digital</option>
+                  <Select value={this.state.newStuff.physical_or_digital_id}
+                  onChange={this.handleNameChange('physical_or_digital_id')}>
+                   <InputLabel selected disabled >Physical/Digital</InputLabel>
                    {this.props.reduxState.pd.map( physical_state => 
-                        <option  value={physical_state.id} key={physical_state.id}>{physical_state.physical_state}</option>
+                        <MenuItem  value={physical_state.id} key={physical_state.id}>{physical_state.physical_state}</MenuItem>
                    )}
-                  </select>
+                  </Select>
                   <br />
-                  <select onChange={this.handleNameChange('status_id')}>
-                   <option selected disabled >Status</option>
+                  <Select value={this.state.newStuff.status_id}
+                  onChange={this.handleNameChange('status_id')}>
+                   <InputLabel selected disabled >Status</InputLabel>
                    {this.props.reduxState.status.map( status => 
-                        <option  value={status.id} key={status.id}>{status.status}</option>
+                        <MenuItem  value={status.id} key={status.id}>{status.status}</MenuItem>
                    )}
-                  </select>
+                  </Select>
                   <br />
-                  <label>
-                  Active/Inactive:
-                  <TextField type="text" value={this.state.newStuff.active}
-                  onChange={this.handleNameChange('active')} />
-                  </label>
-                  <input type='submit' value='Add New Stuff' />
-              </form>
+                  <Select value={this.state.newStuff.active}
+                  onChange={this.handleNameChange('active')} >
+                  <InputLabel selected disabled >Active/Inactive:</InputLabel>
+                    <MenuItem value={true}>Active</MenuItem>
+                    <MenuItem value={false}>Inactive</MenuItem>
+                  </Select>
+                  <button onClick={this.handleSubmit}>Add New Stuff</button>
+              </FormControl>
           </div>
       );
   }

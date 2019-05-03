@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
+import TextField from '@material-ui/core/TextField';
 
 const moment = require('moment');
 
@@ -95,11 +96,11 @@ class StuffDetails extends Component {
         <img src={stuff.image_url} alt={stuff.name}/>
         <ul>
           <li>ID: {stuff.id}</li>
-          {this.state.currentlyEditing === true ? <input onChange={this.handleChange('name')} defaultValue={`${stuff.name}`}/> : 
+          {this.state.currentlyEditing === true ? <TextField onChange={this.handleChange('name')} defaultValue={`${stuff.name}`}/> : 
           <li>Stuff Name: {stuff.name}</li>}
-          {this.state.currentlyEditing === true ? <input onChange={this.handleChange('description')} defaultValue={`${stuff.description}`}/> : 
+          {this.state.currentlyEditing === true ? <TextField onChange={this.handleChange('description')} defaultValue={`${stuff.description}`}/> : 
           <li>Description: {stuff.description}</li>}
-          {this.state.currentlyEditing === true ? <input onChange={this.handleChange('quantity')} defaultValue={`${stuff.quantity}`}/> : 
+          {this.state.currentlyEditing === true ? <TextField onChange={this.handleChange('quantity')} defaultValue={`${stuff.quantity}`}/> : 
           <li>Quantity: {stuff.quantity}</li>}
           <li>Type: {stuff.type}</li>
           <li>Physical State: {stuff.physical_state}</li>

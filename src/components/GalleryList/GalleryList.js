@@ -30,7 +30,7 @@ const styles = theme => ({
   },
   button: {
       margin: theme.spacing.unit,
-      background: 'linear-gradient(315deg, #a40606 0%, #d98324 74%)',
+      background: 'orange',
       color: 'white',
       textColor: 'white',
   },
@@ -78,7 +78,7 @@ render() {
                 <TableCell>Quantity</TableCell>
                 <TableCell>Type</TableCell>
                 <TableCell>Status</TableCell>
-                <TableCell align="right">{'\u00A0'}</TableCell>
+                {/* <TableCell align="right">{'\u00A0'}</TableCell> */}
             </TableRow>
             </TableHead>
             <TableBody>
@@ -104,13 +104,13 @@ render() {
                 <TableCell component="th" scope="project">
                     {stuffItem.status}
                 </TableCell>
-                <TableCell align="right">
+                {/* <TableCell align="right"> */}
                     {/* <Button type="button" className={classes.button}
                     onClick={() => deleteStuff(stuffItem.id)}>DELETE
                     </Button> */}
-                    <Button className={classes.button}
+                    {/* <Button className={classes.button}
                     onClick={this.deleteStuff} value={stuffItem.id}>DELETE
-                    </Button>
+                    </Button> */}
                     {/* <Button variant="outlined" color="primary"  value={stuffItem.id} onClick={this.handleClickOpen}>
                     Delete
                     </Button>
@@ -138,7 +138,7 @@ render() {
                         </Button>
                     </DialogActions>
                     </Dialog> */}
-                </TableCell>
+                {/* </TableCell> */}
                 </TableRow>
             ))}
             </TableBody>

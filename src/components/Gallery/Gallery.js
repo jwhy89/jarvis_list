@@ -61,6 +61,9 @@ class Gallery extends React.Component {
     const { classes, theme } = this.props;
     const { activeStep } = this.state;
     const maxSteps = this.props.reduxState.stuff.length;
+
+    // async issues with redux; need to write conditional to load reducer;
+    // initially the properties of the reducer array were coming in undefined
     let stuffName = "";
     if(maxSteps > 0) {
       stuffName = this.props.reduxState.stuff[activeStep].stuff_name;
