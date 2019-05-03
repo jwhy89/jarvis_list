@@ -97,8 +97,10 @@ class StuffDetails extends Component {
           <li>ID: {stuff.id}</li>
           {this.state.currentlyEditing === true ? <input onChange={this.handleChange('name')} defaultValue={`${stuff.name}`}/> : 
           <li>Stuff Name: {stuff.name}</li>}
-          <li>Description: {stuff.description}</li>
-          <li>Quantity: {stuff.quantity}</li>
+          {this.state.currentlyEditing === true ? <input onChange={this.handleChange('description')} defaultValue={`${stuff.description}`}/> : 
+          <li>Description: {stuff.description}</li>}
+          {this.state.currentlyEditing === true ? <input onChange={this.handleChange('quantity')} defaultValue={`${stuff.quantity}`}/> : 
+          <li>Quantity: {stuff.quantity}</li>}
           <li>Type: {stuff.type}</li>
           <li>Physical State: {stuff.physical_state}</li>
         </ul>

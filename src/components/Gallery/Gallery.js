@@ -15,37 +15,9 @@ import GalleryList from '../GalleryList/GalleryList';
 
 const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
 
-// const tutorialSteps = [
-//   {
-//     label: 'San Francisco – Oakland Bay Bridge, United States',
-//     imgPath:
-//       'https://images.unsplash.com/photo-1537944434965-cf4679d1a598?auto=format&fit=crop&w=400&h=250&q=60',
-//   },
-//   {
-//     label: 'Bird',
-//     imgPath:
-//       'https://images.unsplash.com/photo-1538032746644-0212e812a9e7?auto=format&fit=crop&w=400&h=250&q=60',
-//   },
-//   {
-//     label: 'Bali, Indonesia',
-//     imgPath:
-//       'https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=400&h=250&q=80',
-//   },
-//   {
-//     label: 'NeONBRAND Digital Marketing, Las Vegas, United States',
-//     imgPath:
-//       'https://images.unsplash.com/photo-1518732714860-b62714ce0c59?auto=format&fit=crop&w=400&h=250&q=60',
-//   },
-//   {
-//     label: 'Goč, Serbia',
-//     imgPath:
-//       'https://images.unsplash.com/photo-1512341689857-198e7e2f3ca8?auto=format&fit=crop&w=400&h=250&q=60',
-//   },
-// ];
-
 const styles = theme => ({
   root: {
-    maxWidth: 400,
+    maxWidth: 800,
     flexGrow: 1,
   },
   header: {
@@ -56,9 +28,9 @@ const styles = theme => ({
     backgroundColor: theme.palette.background.default,
   },
   img: {
-    height: 255,
+    height: 510,
     display: 'block',
-    maxWidth: 400,
+    maxWidth: 800,
     overflow: 'hidden',
     width: '100%',
   },
@@ -89,14 +61,19 @@ class Gallery extends React.Component {
     const { classes, theme } = this.props;
     const { activeStep } = this.state;
     const maxSteps = this.props.reduxState.stuff.length;
+    let stuffName = "";
+    if(maxSteps > 0) {
+      stuffName = this.props.reduxState.stuff[activeStep].stuff_name;
+    }
+    
 
     return (
       <>
-        <h1>{JSON.stringify(this.props.reduxState.stuff[activeStep])}</h1>
+        {/* <h1>{JSON.stringify(`thing: ${stuffQ}`)}</h1> */}
         <div className={classes.root}>
-          {/* <Paper square elevation={0} className={classes.header}>
-            <Typography>{tutorialSteps[activeStep].name}</Typography>
-          </Paper> */}
+          <Paper square elevation={0} className={classes.header}>
+            <Typography>{stuffName}</Typography>
+          </Paper>
           <AutoPlaySwipeableViews
             axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
             index={activeStep}

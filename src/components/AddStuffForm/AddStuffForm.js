@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
+import TextField from '@material-ui/core/TextField'
+import FormControl from '@material-ui/core/FormControl';
 
 const moment = require('moment');
 
@@ -60,38 +62,38 @@ class AddStuffForm extends Component {
                   <br />
                   <label>
                   Stuff Name:
-                  <input type="text" value={this.state.newStuff.name}
+                  <TextField type="text" value={this.state.newStuff.name}
                   onChange={this.handleNameChange('name')} />
                   </label>
                       <br />
                   <label>
                   Description:
-                  <input type="text" value={this.state.newStuff.description}
+                  <TextField type="text" value={this.state.newStuff.description}
                   onChange={this.handleNameChange('description')} />
                   </label>
                       <br />
                   <label>
                   Last Used:
-                  <input type="date" defaultValue={moment().format('YYYY-MM-DD')}
+                  <TextField type="date" defaultValue={moment().format('YYYY-MM-DD')}
                   // value={this.state.newStuff.last_used}
                   onChange={this.handleNameChange('last_used')} />
                   </label>
                       <br />
                   <label>
                   Price:
-                  <input type="number" value={this.state.newStuff.price}
+                  <TextField type="number" value={this.state.newStuff.price}
                   onChange={this.handleNameChange('price')} />
                   </label>
                       <br />
                   <label>
                   Image URL:
-                  <input type="url" value={this.state.newStuff.image_url}
+                  <TextField type="url" value={this.state.newStuff.image_url}
                   onChange={this.handleNameChange('image_url')} />
                   </label>
                       <br />
                   <label>
                   Quantity:
-                  <input type="text" value={this.state.newStuff.quantity}
+                  <TextField type="text" value={this.state.newStuff.quantity}
                   onChange={this.handleNameChange('quantity')} />
                   </label>
                       <br />
@@ -118,7 +120,7 @@ class AddStuffForm extends Component {
                   <br />
                   <label>
                   Active/Inactive:
-                  <input type="text" value={this.state.newStuff.active}
+                  <TextField type="text" value={this.state.newStuff.active}
                   onChange={this.handleNameChange('active')} />
                   </label>
                   <input type='submit' value='Add New Stuff' />
