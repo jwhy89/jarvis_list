@@ -92,7 +92,7 @@ INSERT INTO "stuff" ("name", "description", "last_used", "price", "image_url", "
 Values ('Forehead Protector', 'A headband composed of a metal plate and a band of cloth.', '04-23-2019', 10, 'https://ae01.alicdn.com/kf/HTB1rJ1aNFXXXXccXXXXq6xXFXXXT/Black-Naruto-Leaf-Village-Logo-Metal-Plated-Headband-Forehead-Protector-Cosplay-Accessories.jpg', 1, 1, null, 2, 2, 5, true);
 
 -- GET REQUEST
-SELECT "stuff"."id", "stuff"."name" AS "stuff_name", "stuff"."description", "stuff"."quantity", "quantity_type"."type" AS "type", "physical_or_digital"."physical_state", "stuff"."last_used", "status"."status", "stuff"."active"
+SELECT "stuff"."id", "stuff"."name" AS "stuff_name", "stuff"."description", "stuff"."quantity", "quantity_type"."type" AS "type", "physical_or_digital"."physical_state", "stuff"."last_used", "status"."status", "stuff"."active", "stuff"."image_url",
 FROM "stuff"
 JOIN "physical_or_digital" ON "stuff"."physical_or_digital_id" = "physical_or_digital"."id"
 JOIN "quantity_type" ON "stuff"."quantity_type_id" =  "quantity_type"."id"
