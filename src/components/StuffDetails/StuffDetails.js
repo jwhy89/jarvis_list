@@ -2,6 +2,10 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import TextField from '@material-ui/core/TextField';
+// @material-ui/icons
+import Deleted from "@material-ui/icons/DeleteOutlineRounded";
+import EditIcon from "@material-ui/icons/EditRounded";
+import UpdateIcon from "@material-ui/icons/DoneRounded";
 
 const moment = require('moment');
 
@@ -90,8 +94,8 @@ class StuffDetails extends Component {
         {/* <h1>{JSON.stringify(this.props.reduxState.details.name)}</h1> */}
         <h1>{stuff.name}</h1>
         { this.state.currentlyEditing === true ? 
-          <button onClick={this.handleEditSubmit}>Update</button> :
-          <button onClick={this.handleEdit}>Edit</button>
+          <button onClick={this.handleEditSubmit}><UpdateIcon/>Update</button> :
+          <button onClick={this.handleEdit}><EditIcon/>Edit</button>
         }
         <img src={stuff.image_url} alt={stuff.name}/>
         <ul>
@@ -105,7 +109,7 @@ class StuffDetails extends Component {
           <li>Type: {stuff.type}</li>
           <li>Physical State: {stuff.physical_state}</li>
         </ul>
-        <button onClick={() => this.deleteStuff()}>Delete</button>
+        <button onClick={() => this.deleteStuff()}><Deleted/>Delete</button>
       </div>
     );
   }

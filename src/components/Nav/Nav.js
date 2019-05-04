@@ -3,6 +3,9 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import LogOutButton from '../LogOutButton/LogOutButton';
 import './Nav.css';
+// @material-ui/icons
+import Home from "@material-ui/icons/HomeRounded";
+import ListIcon from "@material-ui/icons/ListAltRounded";
 
 // look into random number of array
 // var randomize = props.stuff[Math.floor(Math.random() * props.stuff.length)];
@@ -12,14 +15,14 @@ const Nav = (props) => (
   <div className="nav">
     <Link to="/home">
       {/* LOOK INTO CONDITIONAL RENDORING FOR NAMES ENDING WITH S and set default to Jarvis' List*/}
-      <h2 className="nav-title">Jarvis' List</h2>
+      <h2 className="nav-title">Jarvis' List <ListIcon/></h2>
     </Link>
     <div className="nav-right">
       <Link className="nav-link" to="/home">
         {/* Show this link if they are logged in or not,
         but call this link 'Home' if they are logged in,
         and call this link 'Login / Register' if they are not */}
-        {props.user.id ? 'Home' : 'Login / Register'}
+        {props.user.id ? <Home /> : 'Login / Register'}
       </Link>
       {/* Show the link to the info page and the logout button if the user is logged in */}
       {props.user.id && (

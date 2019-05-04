@@ -30,9 +30,11 @@ const styles = theme => ({
   },
   button: {
       margin: theme.spacing.unit,
-      background: 'orange',
+      background: 'darkorange',
       color: 'white',
       textColor: 'white',
+      '&:hover': {
+        background: 'lightsalmon',}
   },
 });
 

@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
 import TextField from '@material-ui/core/TextField';
+// @material-ui/icons
+import RegisterIcon from "@material-ui/icons/HowToRegRounded";
+import TextIcon from "@material-ui/icons/TextFieldsRounded";
 
 class RegisterPage extends Component {
   state = {
@@ -44,7 +47,7 @@ class RegisterPage extends Component {
         <form onSubmit={this.registerUser}>
           <div>
             <label htmlFor="username">
-              Create a Username:
+              <RegisterIcon />Create a Username:
               <TextField
                 type="text"
                 name="username"
@@ -56,7 +59,7 @@ class RegisterPage extends Component {
           </div>
           <div>
             <label htmlFor="password">
-              Create a Password:
+              <TextIcon />Create a Password:
               <TextField
                 type="password"
                 name="password"

@@ -5,6 +5,8 @@ import FormControl from '@material-ui/core/FormControl';
 import InputLabel from '@material-ui/core/InputLabel';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
+// @material-ui/icons
+import AddIcon from "@material-ui/icons/AddBoxRounded";
 
 const moment = require('moment');
 
@@ -130,7 +132,7 @@ class AddStuffForm extends Component {
                     <MenuItem value={true}>Active</MenuItem>
                     <MenuItem value={false}>Inactive</MenuItem>
                   </Select>
-                  <button onClick={this.handleSubmit}>Add New Stuff</button>
+                  <button onClick={this.handleSubmit}><AddIcon/>Add New Stuff</button>
               </FormControl>
           </div>
       );
