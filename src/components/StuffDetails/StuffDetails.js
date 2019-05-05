@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { Button, TextField } from '@material-ui/core';
-import { Grid } from '@material-ui/core';
+import { Button, TextField, Grid, FormControl } from '@material-ui/core';
 // @material-ui/icons
 import Deleted from "@material-ui/icons/DeleteOutlineRounded";
 import EditIcon from "@material-ui/icons/EditRounded";
@@ -22,6 +21,9 @@ class StuffDetails extends Component {
   componentDidMount() {
     this.props.dispatch({ type: 'FETCH_DETAILS', payload: this.props.match.params.id })
     console.log('in componentdidmount', this.props.reduxState.details);
+    this.props.dispatch( {type: 'FETCH_TYPE'} );
+    this.props.dispatch( {type: 'FETCH_PD'} );
+    this.props.dispatch( {type: 'FETCH_STATUS'} );
   }
 
   // async issue with componentDidMount
@@ -135,27 +137,101 @@ class StuffDetails extends Component {
               <><span>ID: {stuff.id}</span><br /></>
               {this.state.currentlyEditing === true ?
               <>
-              <TextField onChange={this.handleChange('name')} defaultValue={`${stuff.name}`}/>
-              <br />
-              </> :
-              <><span>Stuff Name: {stuff.name}</span><br /></>}
-              {this.state.currentlyEditing === true ?
-              <>
-              <TextField onChange={this.handleChange('description')} defaultValue={`${stuff.description}`}/>
-              <br />
-              </> :
-              <><span>Description: {stuff.description}</span><br /></>}
-              {this.state.currentlyEditing === true ?
-              <>
+              <FormControl onSubmit={this.handleSubmit}>
               <TextField
+                label="Edit Name"
+                onChange={this.handleChange('name')} 
+                defaultValue={`${stuff.name}`}
+                margin="dense"
+                variant="filled"/>
+              <br />
+              <TextField
+                label="Edit Description"
+                onChange={this.handleChange('description')} 
+                defaultValue={`${stuff.description}`}
+                margin="dense"
+                variant="filled"/>
+              <br />
+              <TextField
+                label="Last Used"
+                type="date"
+                defaultValue={moment().format('YYYY-MM-DD')}
+                onChange={this.handleChange('last_used')}
+                margin="dense"
+                variant="filled"/>
+              <br />
+              <TextField
+                label="Price $"
+                type="money"
+                onChange={this.handleChange('price')}
+                defaultValue={`${stuff.price}`}
+                margin="dense"
+                variant="filled"/>
+              <br />
+              <TextField
+                label="Image URL"
+                type="url"
+                onChange={this.handleChange('image_url')}
+                defaultValue={`${stuff.image_url}`}
+                margin="dense"
+                variant="filled"/>
+              <br />
+              <TextField
+                label="Edit Quantity"
                 type="number"
                 onChange={this.handleChange('quantity')}
-                defaultValue={`${stuff.quantity}`}/>
+                defaultValue={`${stuff.quantity}`}
+                margin="dense"
+                variant="filled"/>
               <br />
+              <label selected disabled >Type</label>
+              <select
+                defaultValue={`${stuff.quantity_type_id}`}
+                onChange={this.handleChange('quantity_type_id')} >
+                    {this.props.reduxState.type.map( type => 
+                      <option value={type.id} key={type.id}>{type.type}</option>
+                    )}
+              </select>
+              <br />
+              <label selected disabled >Physical/Digital</label>
+              <select
+                defaultValue={`${stuff.physical_or_digital_id}`}
+                onChange={this.handleChange('physical_or_digital_id')}>
+                    {this.props.reduxState.pd.map( physical_state => 
+                      <option value={physical_state.id} key={physical_state.id}>{physical_state.physical_state}</option>
+                    )}
+              </select>
+              <br />
+              <label selected disabled >Status</label>
+              <select
+                defaultValue={`${stuff.status_id}`}
+                onChange={this.handleChange('status_id')}>
+                    {this.props.reduxState.status.map( status =>
+                      <option value={status.id} key={status.id}>{status.status}</option>
+                    )}
+              </select>
+              <br />
+              <label selected disabled >Active/Inactive:</label>
+              <select
+                defaultValue={`${stuff.active}`}
+                onChange={this.handleChange('active')} >
+                    <option value={true}>Active</option>
+                    <option value={false}>Inactive</option>
+              </select>
+              <br />
+              </FormControl>
               </> :
-              <><span>Quantity: {stuff.quantity}</span><br /></>}
-              <><span>Type: {stuff.type}</span><br /></>
-              <><span>Physical State: {stuff.physical_state}</span><br /></>
+              <>
+                <span>Stuff Name: {stuff.name}</span><br />
+                <span>Description: {stuff.description}</span><br />
+                <span>Last Used: {moment(stuff.last_used).format('YYYY-MM-DD')}</span><br />
+                <span>Price: {stuff.price}</span><br />
+                <span>Image URL: {stuff.image_url}</span><br />
+                <span>Quantity: {stuff.quantity} {stuff.type}</span><br />
+                <span>Physical State: {stuff.physical_state}</span><br />
+                <span>Status: {stuff.status}</span><br />
+                <span>Active/Inactive: {JSON.stringify(stuff.active)}</span><br />
+              </>}
           </Grid>
             <Button variant="contained" onClick={() => this.deleteStuff()}><Deleted/>Delete</Button>
           </Grid>
