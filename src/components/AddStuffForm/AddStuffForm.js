@@ -1,10 +1,6 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
-import { Button, TextField } from '@material-ui/core';
-import FormControl from '@material-ui/core/FormControl';
-import InputLabel from '@material-ui/core/InputLabel';
-import Select from '@material-ui/core/Select';
-import MenuItem from '@material-ui/core/MenuItem';
+import { Button, TextField, FormControl, InputLabel, Select, MenuItem } from '@material-ui/core';
 // @material-ui/icons
 import AddIcon from "@material-ui/icons/AddBoxRounded";
 
@@ -20,7 +16,7 @@ const emptyStuff = {
   quantity: 1,
   physical_or_digital_id: 1,
   quantity_type_id: 1,
-  status_id: 1,
+  status_id: 2,
   active: true
 }
 
@@ -64,7 +60,6 @@ class AddStuffForm extends Component {
               <h3>Add stuff:</h3>
               {/* <pre>{JSON.stringify(this.state)}</pre> */}
               <FormControl onSubmit={this.handleSubmit}>
-                  <br />
                   <TextField
                     label="Stuff Name"
                     type="text"
@@ -143,7 +138,7 @@ class AddStuffForm extends Component {
                     onChange={this.handleNameChange('status_id')}>
                       <InputLabel selected disabled >Status</InputLabel>
                         {this.props.reduxState.status.map( status => 
-                              <MenuItem value={status.id} key={status.id}>{status.status}</MenuItem>
+                          <MenuItem value={status.id} key={status.id}>{status.status}</MenuItem>
                         )}
                   </Select>
                   <br />
