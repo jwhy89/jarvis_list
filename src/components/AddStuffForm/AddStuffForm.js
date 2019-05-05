@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
-import TextField from '@material-ui/core/TextField';
+import { Button, TextField } from '@material-ui/core';
 import FormControl from '@material-ui/core/FormControl';
 import InputLabel from '@material-ui/core/InputLabel';
 import Select from '@material-ui/core/Select';
@@ -65,74 +65,100 @@ class AddStuffForm extends Component {
               {/* <pre>{JSON.stringify(this.state)}</pre> */}
               <FormControl onSubmit={this.handleSubmit}>
                   <br />
-                  <label>
-                  Stuff Name:
-                  <TextField type="text" value={this.state.newStuff.name} placeholder="Stuff Name"
-                  onChange={this.handleNameChange('name')} />
-                  </label>
-                      <br />
-                  <label>
-                  Description:
-                  <TextField type="text" value={this.state.newStuff.description} placeholder="Description"
-                  onChange={this.handleNameChange('description')} />
-                  </label>
-                      <br />
-                  <label>
-                  Last Used:
-                  <TextField type="date" defaultValue={moment().format('YYYY-MM-DD')}
-                  // value={this.state.newStuff.last_used}
-                  onChange={this.handleNameChange('last_used')} />
-                  </label>
-                      <br />
-                  <label>
-                  Price:
-                  <TextField type="number" value={this.state.newStuff.price}
-                  onChange={this.handleNameChange('price')} />
-                  </label>
-                      <br />
-                  <label>
-                  Image URL:
-                  <TextField type="url" value={this.state.newStuff.image_url} placeholder="Image URL"
-                  onChange={this.handleNameChange('image_url')} />
-                  </label>
-                      <br />
-                  <label>
-                  Quantity:
-                  <TextField type="text" value={this.state.newStuff.quantity}
-                  onChange={this.handleNameChange('quantity')} />
-                  </label>
-                      <br />
-                  <Select value={this.state.newStuff.quantity_type_id}
-                  onChange={this.handleNameChange('quantity_type_id')}>
-                   <InputLabel selected disabled >Type</InputLabel>
-                   {this.props.reduxState.type.map( type => 
-                        <MenuItem  value={type.id} key={type.id}>{type.type}</MenuItem>
-                   )}
+                  <TextField
+                    label="Stuff Name"
+                    type="text"
+                    value={this.state.newStuff.name}
+                    onChange={this.handleNameChange('name')}
+                    margin="dense"
+                    variant="filled"
+                  />
+                  <br />
+                  <TextField
+                    label="Description"
+                    type="text"
+                    value={this.state.newStuff.description}
+                    onChange={this.handleNameChange('description')}
+                    margin="dense"
+                    variant="filled"
+                  />
+                  <br />
+                  <TextField
+                    label="Last Used"
+                    type="date"
+                    defaultValue={moment().format('YYYY-MM-DD')}
+                    // value={this.state.newStuff.last_used}
+                    onChange={this.handleNameChange('last_used')}
+                    margin="dense"
+                    variant="filled"
+                  />
+                  <br />
+                  <TextField
+                    label="Price $"
+                    type="number"
+                    value={this.state.newStuff.price}
+                    onChange={this.handleNameChange('price')}
+                    margin="dense"
+                    variant="filled"
+                  />
+                  <br />
+                  <TextField
+                    label="Image URL"
+                    type="url"
+                    value={this.state.newStuff.image_url}
+                    onChange={this.handleNameChange('image_url')}
+                    margin="dense"
+                    variant="filled"
+                  />
+                  <br />
+                  <TextField
+                    label="Quantity"
+                    type="number"
+                    value={this.state.newStuff.quantity}
+                    onChange={this.handleNameChange('quantity')}
+                    margin="dense"
+                    variant="filled"
+                  />
+                  <br />
+                  <Select 
+                    value={this.state.newStuff.quantity_type_id}
+                    onChange={this.handleNameChange('quantity_type_id')} >
+                      <InputLabel selected disabled >Type</InputLabel>
+                        {this.props.reduxState.type.map( type => 
+                          <MenuItem value={type.id} key={type.id}>{type.type}</MenuItem>
+                        )}
                   </Select>
                   <br />
-                  <Select value={this.state.newStuff.physical_or_digital_id}
-                  onChange={this.handleNameChange('physical_or_digital_id')}>
-                   <InputLabel selected disabled >Physical/Digital</InputLabel>
-                   {this.props.reduxState.pd.map( physical_state => 
-                        <MenuItem  value={physical_state.id} key={physical_state.id}>{physical_state.physical_state}</MenuItem>
-                   )}
+                  <Select
+                    value={this.state.newStuff.physical_or_digital_id}
+                    onChange={this.handleNameChange('physical_or_digital_id')}>
+                      <InputLabel selected disabled >Physical/Digital</InputLabel>
+                        {this.props.reduxState.pd.map( physical_state => 
+                          <MenuItem value={physical_state.id} key={physical_state.id}>{physical_state.physical_state}</MenuItem>
+                        )}
                   </Select>
                   <br />
-                  <Select value={this.state.newStuff.status_id}
-                  onChange={this.handleNameChange('status_id')}>
-                   <InputLabel selected disabled >Status</InputLabel>
-                   {this.props.reduxState.status.map( status => 
-                        <MenuItem  value={status.id} key={status.id}>{status.status}</MenuItem>
-                   )}
+                  <Select
+                    value={this.state.newStuff.status_id}
+                    onChange={this.handleNameChange('status_id')}>
+                      <InputLabel selected disabled >Status</InputLabel>
+                        {this.props.reduxState.status.map( status => 
+                              <MenuItem value={status.id} key={status.id}>{status.status}</MenuItem>
+                        )}
                   </Select>
                   <br />
-                  <Select value={this.state.newStuff.active}
-                  onChange={this.handleNameChange('active')} >
-                  <InputLabel selected disabled >Active/Inactive:</InputLabel>
-                    <MenuItem value={true}>Active</MenuItem>
-                    <MenuItem value={false}>Inactive</MenuItem>
+                  <Select
+                    value={this.state.newStuff.active}
+                    onChange={this.handleNameChange('active')} >
+                      <InputLabel selected disabled >Active/Inactive:</InputLabel>
+                        <MenuItem value={true}>Active</MenuItem>
+                        <MenuItem value={false}>Inactive</MenuItem>
                   </Select>
-                  <button onClick={this.handleSubmit}><AddIcon/>Add New Stuff</button>
+                  <br />
+                  <Button
+                    variant="contained"
+                    style={{ backgroundColor: 'orange' }}
+                    onClick={this.handleSubmit}><AddIcon/>Add New Stuff</Button>
               </FormControl>
           </div>
       );
