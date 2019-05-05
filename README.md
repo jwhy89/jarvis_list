@@ -59,39 +59,39 @@ CREATE TABLE "location" (
 
 -- table for list of stuff
 CREATE TABLE "stuff" (
-"id" SERIAL PRIMARY KEY,
-"name" VARCHAR (80),
-"description" VARCHAR (2500),
-"last_used" DATE,
-"price" MONEY,
-"image_url" varchar (2500),
-"quantity" NUMERIC(8, 2),
-"physical_or_digital_id" INT REFERENCES "physical_or_digital",
-"physical_location_id" INT REFERENCES "location",
-"quantity_type_id" INT REFERENCES "quantity_type",
-"user_id" INT REFERENCES "user" NOT NULL,
-"status_id" INT REFERENCES "status",
-"active" boolean
+    "id" SERIAL PRIMARY KEY,
+    "name" VARCHAR (80),
+    "description" VARCHAR (2500),
+    "last_used" DATE,
+    "price" MONEY,
+    "image_url" varchar (2500),
+    "quantity" NUMERIC(8, 2),
+    "physical_or_digital_id" INT REFERENCES "physical_or_digital",
+    "physical_location_id" INT REFERENCES "location",
+    "quantity_type_id" INT REFERENCES "quantity_type",
+    "user_id" INT REFERENCES "user" NOT NULL,
+    "status_id" INT REFERENCES "status",
+    "active" boolean
 );
 
 -- set up test values for initial development
 INSERT INTO "status" ("status") 
 VALUES ('Donate'),
-		('Keep'),
-		('Sell'),
-		('Store'),
-		('Toss');
+	('Keep'),
+	('Sell'),
+	('Store'),
+	('Toss');
 		
 INSERT INTO "physical_or_digital" ("physical_state") 
 VALUES ('physical'), 
-		('digital');
+	('digital');
 		
 INSERT INTO "quantity_type" ("type") 
 VALUES ('unit'), 
-		('piece'),
-		('bundle'),
-		('container'),
-		('quart');
+	('piece'),
+	('bundle'),
+	('container'),
+	('quart');
 ```
 
 If you would like to name your database something else, you will need to change `jarvis_list` to the name of your new database name in `server/modules/pool.js`
