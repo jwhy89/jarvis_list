@@ -123,10 +123,10 @@ class StuffDetails extends Component {
             <h1 style={{textAlign: 'center'}}>{stuff.name}</h1>
             { this.state.currentlyEditing === true ? 
               <>
-              <Button variant="contained" onClick={this.handleEditSubmit}><UpdateIcon/>Update</Button>  
+              <Button variant="contained" style={{ backgroundColor: 'green' }} onClick={this.handleEditSubmit}><UpdateIcon/>Update</Button>  
               <Button variant="contained" onClick={this.handleEditCancel}><CancelIcon/>Cancel</Button>
               </> :
-              <Button variant="contained" onClick={this.handleEdit}><EditIcon/>Edit</Button>
+              <Button variant="contained" style={{ backgroundColor: 'orange' }} onClick={this.handleEdit}><EditIcon/>Edit</Button>
             }
           </Grid>
           <Grid item>
@@ -230,10 +230,10 @@ class StuffDetails extends Component {
                 <span>Quantity: {stuff.quantity} {stuff.type}</span><br />
                 <span>Physical State: {stuff.physical_state}</span><br />
                 <span>Status: {stuff.status}</span><br />
-                <span>Active/Inactive: {JSON.stringify(stuff.active)}</span><br />
+                <span>Active/Inactive: {JSON.stringify(stuff.active)}</span><br /><br />
               </>}
           </Grid>
-            <Button variant="contained" onClick={() => this.deleteStuff()}><Deleted/>Delete</Button>
+            <Button variant="contained" style={{ backgroundColor: 'red' }} onClick={() => this.deleteStuff()}><Deleted/>Delete</Button>
           </Grid>
         </Grid>
       </Grid>
