@@ -11,7 +11,7 @@ const moment = require('moment');
 
 class StuffDetails extends Component {
 
-  state ={
+  state = {
     currentlyEditing: false,
       editStuff: {},
   }
