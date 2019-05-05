@@ -53,7 +53,7 @@ CREATE TABLE "stuff" (
 );
 
 
--- set up set variables
+-- set up test values for initial development
 INSERT INTO "status" ("status") 
 VALUES ('Donate'),
 		('Keep'),

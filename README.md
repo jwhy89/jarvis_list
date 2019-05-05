@@ -31,6 +31,7 @@ CREATE TABLE "user" (
     "password" VARCHAR (1000) NOT NULL
 );
 
+-- table for physical state of stuff
 CREATE TABLE "physical_or_digital" (
     "id" SERIAL PRIMARY KEY,
     "physical_state" VARCHAR (80) NOT NULL
@@ -72,6 +73,25 @@ CREATE TABLE "stuff" (
 "status_id" INT REFERENCES "status",
 "active" boolean
 );
+
+-- set up test values for initial development
+INSERT INTO "status" ("status") 
+VALUES ('Donate'),
+		('Keep'),
+		('Sell'),
+		('Store'),
+		('Toss');
+		
+INSERT INTO "physical_or_digital" ("physical_state") 
+VALUES ('physical'), 
+		('digital');
+		
+INSERT INTO "quantity_type" ("type") 
+VALUES ('unit'), 
+		('piece'),
+		('bundle'),
+		('container'),
+		('quart');
 ```
 
 If you would like to name your database something else, you will need to change `jarvis_list` to the name of your new database name in `server/modules/pool.js`
@@ -141,8 +161,8 @@ This code is also heavily commented. We recommend reading through the comments, 
 1. Add an environment variable for `SERVER_SESSION_SECRET` with a nice random string for security
 1. In the deploy section, select manual deploy
 
-## These are features I did not get to and will like to implement in the future.
-There is many features that I did not get to within the two weeks. I would like to add the following features:
+## These are features I did not get to and would like to implement in the future.
+There were many features that I did not get to within the assigned two weeks for the project. I would like to add the following features:
 
 1. Uploading images.
 2. Using the Google Maps API to add a location to the stuff.
