@@ -129,7 +129,7 @@ class StuffDetails extends Component {
           </Grid>
           <Grid item>
             <img src={stuff.image_url} alt={stuff.name}
-             style={{width: 400, height: 200, top: this.props.top, left: this.props.left}}/>
+             style={{width: '100%', height: 400, diplay: 'flex'}}/>
           </Grid>
           <Grid item>
               <><span>ID: {stuff.id}</span><br /></>
