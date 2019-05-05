@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { Button, TextField } from '@material-ui/core';
+import { Grid } from '@material-ui/core';
 // @material-ui/icons
 import Deleted from "@material-ui/icons/DeleteOutlineRounded";
 import EditIcon from "@material-ui/icons/EditRounded";
@@ -100,45 +101,66 @@ class StuffDetails extends Component {
     console.log(this.state.editStuff.name)
     // console.log(this.state.editStuff)
     return (
-      <div>
-        {/* <h1>{JSON.stringify(this.props.reduxState.details.name)}</h1> */}
-        <h1>{stuff.name}</h1>
-        { this.state.currentlyEditing === true ? 
-          <>
-          <Button variant="contained" onClick={this.handleEditSubmit}><UpdateIcon/>Update</Button>
-          <Button variant="contained" onClick={this.handleEditCancel}><CancelIcon/>Cancel</Button>
-          </> :
-          <Button variant="contained" onClick={this.handleEdit}><EditIcon/>Edit</Button>
-        }
-        <img src={stuff.image_url} alt={stuff.name}/>
-        <div>
-          <><span>ID: {stuff.id}</span><br /></>
-          {this.state.currentlyEditing === true ?
-          <>
-          <TextField onChange={this.handleChange('name')} defaultValue={`${stuff.name}`}/>
-          <br />
-          </> :
-          <><span>Stuff Name: {stuff.name}</span><br /></>}
-          {this.state.currentlyEditing === true ?
-          <>
-          <TextField onChange={this.handleChange('description')} defaultValue={`${stuff.description}`}/>
-          <br />
-          </> :
-          <><span>Description: {stuff.description}</span><br /></>}
-          {this.state.currentlyEditing === true ?
-          <>
-          <TextField
-            type="number"
-            onChange={this.handleChange('quantity')}
-            defaultValue={`${stuff.quantity}`}/>
-          <br />
-          </> :
-          <><span>Quantity: {stuff.quantity}</span><br /></>}
-          <><span>Type: {stuff.type}</span><br /></>
-          <><span>Physical State: {stuff.physical_state}</span><br /></>
-        </div>
-        <Button variant="contained" onClick={() => this.deleteStuff()}><Deleted/>Delete</Button>
-      </div>
+      <Grid container
+      direction="row"
+      justify="center"
+      alignItems="stretch">
+      <Grid item
+        xs={12}
+        sm={10}
+        md={8}
+        lg={6}>
+        <Grid container
+          direction='column'
+          justify='space-between'
+          alignItems='stretch'
+          spacing={16}
+        >
+          <Grid item>
+            {/* <h1>{JSON.stringify(this.props.reduxState.details.name)}</h1> */}
+            <h1>{stuff.name}</h1>
+            { this.state.currentlyEditing === true ? 
+              <>
+              <Button variant="contained" onClick={this.handleEditSubmit}><UpdateIcon/>Update</Button>  
+              <Button variant="contained" onClick={this.handleEditCancel}><CancelIcon/>Cancel</Button>
+              </> :
+              <Button variant="contained" onClick={this.handleEdit}><EditIcon/>Edit</Button>
+            }
+          </Grid>
+          <Grid item>
+            <img src={stuff.image_url} alt={stuff.name}
+             style={{width: 400, height: 200, top: this.props.top, left: this.props.left}}/>
+          </Grid>
+          <Grid item>
+              <><span>ID: {stuff.id}</span><br /></>
+              {this.state.currentlyEditing === true ?
+              <>
+              <TextField onChange={this.handleChange('name')} defaultValue={`${stuff.name}`}/>
+              <br />
+              </> :
+              <><span>Stuff Name: {stuff.name}</span><br /></>}
+              {this.state.currentlyEditing === true ?
+              <>
+              <TextField onChange={this.handleChange('description')} defaultValue={`${stuff.description}`}/>
+              <br />
+              </> :
+              <><span>Description: {stuff.description}</span><br /></>}
+              {this.state.currentlyEditing === true ?
+              <>
+              <TextField
+                type="number"
+                onChange={this.handleChange('quantity')}
+                defaultValue={`${stuff.quantity}`}/>
+              <br />
+              </> :
+              <><span>Quantity: {stuff.quantity}</span><br /></>}
+              <><span>Type: {stuff.type}</span><br /></>
+              <><span>Physical State: {stuff.physical_state}</span><br /></>
+          </Grid>
+            <Button variant="contained" onClick={() => this.deleteStuff()}><Deleted/>Delete</Button>
+          </Grid>
+        </Grid>
+      </Grid>
     );
   }
 }

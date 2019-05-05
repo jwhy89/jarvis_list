@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
-import { Button, TextField, FormControl, InputLabel, Select, MenuItem } from '@material-ui/core';
+import { Button, TextField, FormControl, InputLabel, Select, MenuItem, Grid } from '@material-ui/core';
 // @material-ui/icons
 import AddIcon from "@material-ui/icons/AddBoxRounded";
 
@@ -56,7 +56,22 @@ class AddStuffForm extends Component {
 
   render() {
       return (
-          <div>
+        <Grid container
+          direction="row"
+          justify="center"
+          alignItems="stretch">
+          <Grid item
+            xs={12}
+            sm={10}
+            md={8}
+            lg={6}>
+            <Grid container
+              direction='column'
+              justify='space-between'
+              alignItems='stretch'
+              spacing={16}
+            >
+              <Grid item>
               <h3>Add stuff:</h3>
               {/* <pre>{JSON.stringify(this.state)}</pre> */}
               <FormControl onSubmit={this.handleSubmit}>
@@ -155,7 +170,10 @@ class AddStuffForm extends Component {
                     style={{ backgroundColor: 'orange' }}
                     onClick={this.handleSubmit}><AddIcon/>Add New Stuff</Button>
               </FormControl>
-          </div>
+              </Grid>
+            </Grid>
+          </Grid>
+        </Grid>
       );
   }
 }

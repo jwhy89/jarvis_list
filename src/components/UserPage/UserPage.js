@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import LogOutButton from '../LogOutButton/LogOutButton';
+// import LogOutButton from '../LogOutButton/LogOutButton';
 import Gallery from '../Gallery/Gallery';
 
 // this could also be written with destructuring parameters as:
@@ -12,8 +12,8 @@ const UserPage = (props) => (
       Welcome, { props.user.username }!
     </h1>
     <Gallery />
-    <br></br>
-    <LogOutButton className="log-in" />
+    {/* <br></br>
+    <LogOutButton className="log-in" /> */}
   </div>
 );
 
