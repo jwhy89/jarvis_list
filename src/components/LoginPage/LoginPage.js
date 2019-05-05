@@ -42,8 +42,8 @@ class LoginPage extends Component {
           </h2>
         )}
         <form onSubmit={this.login}>
-          <h1>Login</h1>
-          <div>
+          <h1 align="center">Login</h1>
+          <div align="center">
               <TextField
                 label="Username"
                 type="text"
@@ -54,7 +54,7 @@ class LoginPage extends Component {
                 variant="filled"
               />
           </div>
-          <div>
+          <div align="center">
               <TextField
                 label="Password"
                 type="password"
@@ -65,7 +65,7 @@ class LoginPage extends Component {
                 variant="filled"
               />
           </div>
-          <div>
+          <div align="center">
             <input
               className="log-in"
               type="submit"

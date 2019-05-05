@@ -8,7 +8,7 @@ import Gallery from '../Gallery/Gallery';
 // and then instead of `props.user.username` you could use `user.username`
 const UserPage = (props) => (
   <div>
-    <h1 id="welcome">
+    <h1 id="welcome" style={{textAlign: 'center'}}>
       Welcome, { props.user.username }!
     </h1>
     <Gallery />

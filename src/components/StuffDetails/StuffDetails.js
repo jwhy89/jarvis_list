@@ -118,7 +118,7 @@ class StuffDetails extends Component {
         >
           <Grid item>
             {/* <h1>{JSON.stringify(this.props.reduxState.details.name)}</h1> */}
-            <h1>{stuff.name}</h1>
+            <h1 style={{textAlign: 'center'}}>{stuff.name}</h1>
             { this.state.currentlyEditing === true ? 
               <>
               <Button variant="contained" onClick={this.handleEditSubmit}><UpdateIcon/>Update</Button>  

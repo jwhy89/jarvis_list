@@ -71,8 +71,8 @@ class AddStuffForm extends Component {
               alignItems='stretch'
               spacing={16}
             >
-              <Grid item>
-              <h3>Add stuff:</h3>
+              <Grid item align="center">
+              <h3>Add Stuff:</h3>
               {/* <pre>{JSON.stringify(this.state)}</pre> */}
               <FormControl onSubmit={this.handleSubmit}>
                   <TextField
