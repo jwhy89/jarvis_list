@@ -54,11 +54,11 @@ class GalleryList extends Component {
     // function to delete project with reducer
     // had to map the project id into the arrow button 
     // no state on component to access
-    deleteStuff = (event) => {
-    console.log(event.currentTarget.value);
-    this.props.dispatch( { type: 'DELETE_STUFF', payload: event.currentTarget.value } );
-    // this.handleClose();
-    }
+    // deleteStuff = (event) => {
+    // console.log(event.currentTarget.value);
+    // this.props.dispatch( { type: 'DELETE_STUFF', payload: event.currentTarget.value } );
+    // // this.handleClose();
+    // }
 
     // function for React Router for URL parameters for more details
     viewDetails = (event) => {
@@ -66,7 +66,7 @@ class GalleryList extends Component {
     }
 
 render() {
-    const { classes, fullScreen } = this.props;
+    const { classes } = this.props;
 
   return (
         <section>
