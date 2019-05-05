@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
-import TextField from '@material-ui/core/TextField';
+import { Button, TextField } from '@material-ui/core';
 // @material-ui/icons
 import RegisterIcon from "@material-ui/icons/HowToRegRounded";
 import TextIcon from "@material-ui/icons/TextFieldsRounded";
@@ -46,28 +46,30 @@ class RegisterPage extends Component {
         )}
         <form onSubmit={this.registerUser}>
           <div>
-            <label htmlFor="username">
-              <RegisterIcon />Create a Username:
+              <RegisterIcon />
               <TextField
+                label="Create a Username"
                 type="text"
                 name="username"
                 value={this.state.username}
                 placeholder="Username"
                 onChange={this.handleInputChangeFor('username')}
+                margin="dense"
+                variant="filled"
               />
-            </label>
           </div>
           <div>
-            <label htmlFor="password">
-              <TextIcon />Create a Password:
+              <TextIcon />
               <TextField
+                label="Create a Password:"
                 type="password"
                 name="password"
                 placeholder="Password"
                 value={this.state.password}
                 onChange={this.handleInputChangeFor('password')}
+                margin="dense"
+                variant="filled"
               />
-            </label>
           </div>
           <div>
             <input
@@ -79,13 +81,14 @@ class RegisterPage extends Component {
           </div>
         </form>
         <center>
-          <button
+          <Button
+            variant="contained"
             type="button"
             className="link-button"
             onClick={() => {this.props.dispatch({type: 'SET_TO_LOGIN_MODE'})}}
           >
             Cancel
-          </button>
+          </Button>
         </center>
       </div>
     );
