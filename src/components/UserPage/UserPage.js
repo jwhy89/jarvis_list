@@ -12,6 +12,7 @@ const UserPage = (props) => (
       Welcome, { props.user.username }!
     </h1>
     <Gallery />
+    <br></br>
     <LogOutButton className="log-in" />
   </div>
 );

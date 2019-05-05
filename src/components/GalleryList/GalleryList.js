@@ -26,7 +26,11 @@ const styles = theme => ({
     overflowX: 'auto',
   },
   table: {
-    minWidth: 700,
+    // minWidth: 700,
+    width: '100%',
+  },
+  tableCell: {
+    padding: 5,
   },
   button: {
       margin: theme.spacing.unit,
@@ -74,36 +78,36 @@ render() {
         <Table className={classes.table}>
             <TableHead>
             <TableRow>
-                <TableCell align="left">{'\u00A0'}</TableCell>
-                <TableCell>Stuff Name</TableCell>
-                <TableCell>Description</TableCell>
-                <TableCell>Quantity</TableCell>
-                <TableCell>Type</TableCell>
-                <TableCell>Status</TableCell>
+                <TableCell className={classes.tableCell} align="left">{'\u00A0'}</TableCell>
+                <TableCell className={classes.tableCell} >Stuff Name</TableCell>
+                <TableCell className={classes.tableCell}>Description</TableCell>
+                <TableCell className={classes.tableCell}>Quantity</TableCell>
+                <TableCell className={classes.tableCell}>Type</TableCell>
+                <TableCell className={classes.tableCell}>Status</TableCell>
                 {/* <TableCell align="right">{'\u00A0'}</TableCell> */}
             </TableRow>
             </TableHead>
             <TableBody>
             {this.props.reduxState.stuff.map(stuffItem => (
                 <TableRow key={stuffItem.id} name={stuffItem.id}>
-                <TableCell component="th" scope="project">
+                <TableCell  className={classes.tableCell} component="th" scope="project">
                     <Button className={classes.button} align="left"
                     onClick={this.viewDetails} value={stuffItem.id}>DETAILS
                     </Button>
                 </TableCell>
-                <TableCell component="th" scope="project">
+                <TableCell  className={classes.tableCell} component="th" scope="project">
                     {stuffItem.stuff_name}
                 </TableCell>
-                <TableCell component="th" scope="project">
+                <TableCell  className={classes.tableCell} component="th" scope="project">
                     {stuffItem.description}
                 </TableCell>
-                <TableCell component="th" scope="project">
+                <TableCell  className={classes.tableCell} component="th" scope="project">
                     {stuffItem.quantity}
                 </TableCell>
-                <TableCell component="th" scope="project">
+                <TableCell  className={classes.tableCell} component="th" scope="project">
                     {stuffItem.type}
                 </TableCell>
-                <TableCell component="th" scope="project">
+                <TableCell  className={classes.tableCell} component="th" scope="project">
                     {stuffItem.status}
                 </TableCell>
                 {/* <TableCell align="right"> */}
