@@ -28,7 +28,7 @@ const styles = theme => ({
     backgroundColor: theme.palette.background.default,
   },
   img: {
-    height: 400,
+    height: 350,
     display: 'flex',
     minWidth: '100%',
     overflow: 'hidden',
