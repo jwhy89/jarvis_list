@@ -20,7 +20,7 @@ class StuffDetails extends Component {
 
   // function to get details from database and redux state before rendoring
   componentDidMount() {
-    this.props.dispatch({ type: 'FETCH_DETAILS', payload: this.props.match.params.id })
+    this.props.dispatch({ type: 'FETCH_DETAILS', payload: this.props.match.params.id });
     console.log('in componentdidmount', this.props.reduxState.details);
     this.props.dispatch( {type: 'FETCH_TYPE'} );
     this.props.dispatch( {type: 'FETCH_PD'} );
@@ -59,6 +59,7 @@ class StuffDetails extends Component {
   // called when clicked on; will allow user to edit pre-populated field from reduxState
   handleEdit = (event) => {
     console.log('in handleEdit');
+    this.props.dispatch({ type: 'FETCH_DETAILS', payload: this.props.match.params.id });
     let stuffId = event.currentTarget.value;
     console.log(stuffId);
     this.setState({
@@ -81,6 +82,7 @@ class StuffDetails extends Component {
   // PUT request to database
   handleEditCancel = (event) => {
     console.log('in handleEditSubmit');
+    // this.props.dispatch({ type: 'FETCH_DETAILS', payload: this.props.match.params.id });
     this.setState({
         currentlyEditing: false,
     })
@@ -152,7 +154,7 @@ class StuffDetails extends Component {
                 defaultValue={`${stuff.name}`}
                 margin="dense"
                 variant="filled"
-                fullWidth="true"/>
+                fullWidth={true}/>
               <br />
               <TextField
                 label="Edit Description"
@@ -160,8 +162,8 @@ class StuffDetails extends Component {
                 defaultValue={`${stuff.description}`}
                 margin="dense"
                 variant="filled"
-                fullWidth="true"
-                multiline="true"/>
+                fullWidth={true}
+                multiline={true}/>
               <br />
               <TextField
                 label="Last Used"
@@ -170,7 +172,7 @@ class StuffDetails extends Component {
                 onChange={this.handleChange('last_used')}
                 margin="dense"
                 variant="filled"
-                fullWidth="true"/>
+                fullWidth={true}/>
               <br />
               <TextField
                 label="Price $"
@@ -179,7 +181,7 @@ class StuffDetails extends Component {
                 defaultValue={`${stuff.price}`}
                 margin="dense"
                 variant="filled"
-                fullWidth="true"/>
+                fullWidth={true}/>
               <br />
               <TextField
                 label="Image URL"
@@ -188,7 +190,7 @@ class StuffDetails extends Component {
                 defaultValue={`${stuff.image_url}`}
                 margin="dense"
                 variant="filled"
-                fullWidth="true"/>
+                fullWidth={true}/>
               <br />
               <TextField
                 label="Edit Quantity"
@@ -197,7 +199,7 @@ class StuffDetails extends Component {
                 defaultValue={`${stuff.quantity}`}
                 margin="dense"
                 variant="filled"
-                fullWidth="true"/>
+                fullWidth={true}/>
               <br />
               <label selected disabled >Type</label>
               <select

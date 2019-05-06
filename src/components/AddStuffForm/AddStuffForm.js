@@ -82,7 +82,7 @@ class AddStuffForm extends Component {
                     onChange={this.handleNameChange('name')}
                     margin="dense"
                     variant="filled"
-                    fullWidth="true"
+                    fullWidth={true}
                   />
                   <br />
                   <TextField
@@ -92,8 +92,8 @@ class AddStuffForm extends Component {
                     onChange={this.handleNameChange('description')}
                     margin="dense"
                     variant="filled"
-                    fullWidth="true"
-                    multiline="true"
+                    fullWidth={true}
+                    multiline={true}
                   />
                   <br />
                   <TextField
@@ -104,7 +104,7 @@ class AddStuffForm extends Component {
                     onChange={this.handleNameChange('last_used')}
                     margin="dense"
                     variant="filled"
-                    fullWidth="true"
+                    fullWidth={true}
                   />
                   <br />
                   <TextField
@@ -114,7 +114,7 @@ class AddStuffForm extends Component {
                     onChange={this.handleNameChange('price')}
                     margin="dense"
                     variant="filled"
-                    fullWidth="true"
+                    fullWidth={true}
                   />
                   <br />
                   <TextField
@@ -124,7 +124,7 @@ class AddStuffForm extends Component {
                     onChange={this.handleNameChange('image_url')}
                     margin="dense"
                     variant="filled"
-                    fullWidth="true"
+                    fullWidth={true}
                   />
                   <br />
                   <TextField
@@ -134,11 +134,11 @@ class AddStuffForm extends Component {
                     onChange={this.handleNameChange('quantity')}
                     margin="dense"
                     variant="filled"
-                    fullWidth="true"
+                    fullWidth={true}
                   />
                   <br />
                   <Select
-                    fullWidth="true"
+                    fullWidth={true}
                     value={this.state.newStuff.quantity_type_id}
                     onChange={this.handleNameChange('quantity_type_id')} >
                       <InputLabel selected disabled >Type</InputLabel>
@@ -148,7 +148,7 @@ class AddStuffForm extends Component {
                   </Select>
                   <br />
                   <Select
-                    fullWidth="true"
+                    fullWidth={true}
                     value={this.state.newStuff.physical_or_digital_id}
                     onChange={this.handleNameChange('physical_or_digital_id')}>
                       <InputLabel selected disabled >Physical/Digital</InputLabel>
@@ -158,7 +158,7 @@ class AddStuffForm extends Component {
                   </Select>
                   <br />
                   <Select
-                    fullWidth="true"
+                    fullWidth={true}
                     value={this.state.newStuff.status_id}
                     onChange={this.handleNameChange('status_id')}>
                       <InputLabel selected disabled >Status</InputLabel>
@@ -168,7 +168,7 @@ class AddStuffForm extends Component {
                   </Select>
                   <br />
                   <Select
-                    fullWidth="true"
+                    fullWidth={true}
                     value={this.state.newStuff.active}
                     onChange={this.handleNameChange('active')} >
                       <InputLabel selected disabled >Active/Inactive:</InputLabel>

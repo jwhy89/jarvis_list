@@ -67,6 +67,9 @@ class GalleryList extends Component {
     // function for React Router for URL parameters for more details
     viewDetails = (event) => {
     this.props.history.push(`/${event.currentTarget.value}`);
+    // was trying to pre-load the detailsReducer to load the image_url but still have async issuesv
+    // console.log('in viewDetials button', event.currentTarget.value);
+    // this.props.dispatch({ type: 'FETCH_DETAILS', payload: event.currentTarget.value });
     }
 
 render() {
