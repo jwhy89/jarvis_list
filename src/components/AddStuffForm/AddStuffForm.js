@@ -59,7 +59,9 @@ class AddStuffForm extends Component {
     event.preventDefault();
     this.props.dispatch({ type: 'ADD_STUFF', payload: this.state.newStuff })
     this.setState({
-        ...emptyStuff
+        newStuff: {
+          ...emptyStuff
+    }
     })
     this.flashMessage('Stuff successfully ADDED!');
   }
