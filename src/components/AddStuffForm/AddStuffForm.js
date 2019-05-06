@@ -20,6 +20,19 @@ const emptyStuff = {
   active: true
 }
 
+const demoStuff = {
+  name: 'Love Letter Premium',
+  description: 'It is presented in a deluxe box with a magnetic clasp featuring a special red velvet tray for storage. Inside you’ll find tarot-sized cards and sleeves for both the classic love letter card set and an all new extension to the game that enables play for up to 8 players.',
+  last_used: '27.80',
+  price: 27.80,
+  image_url: 'https://images.zmangames.com/filer_public/d4/68/d468258a-f378-42b2-bfcc-e7497db6febf/llp_boxfront_520px.png',
+  quantity: 1,
+  physical_or_digital_id: 1,
+  quantity_type_id: 1,
+  status_id: 2,
+  active: true
+}
+
 class AddStuffForm extends Component {
   state = {
     newStuff: emptyStuff,
@@ -66,6 +79,14 @@ class AddStuffForm extends Component {
     this.flashMessage('Stuff successfully ADDED!');
   }
 
+  demoButton = () => {
+    this.setState({
+        newStuff: {
+          ...demoStuff
+    }
+    })
+  }
+
   render() {
       return (
         <Grid container
@@ -84,7 +105,7 @@ class AddStuffForm extends Component {
               spacing={16}
             >
               <Grid item align="center">
-              <h3>Add Stuff:</h3>
+              <h3 onClick={this.demoButton}>Add Stuff:</h3>
               {/* <pre>{JSON.stringify(this.state)}</pre> */}
               <FormControl style={{ display: 'flex' }} onSubmit={this.handleSubmit}>
                   <TextField
