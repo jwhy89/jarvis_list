@@ -10,7 +10,7 @@ const moment = require('moment');
 const emptyStuff = {
   name: '',
   description: '',
-  last_used: '',
+  last_used: moment().format('YYYY-MM-DD'),
   price: 1,
   image_url: '',
   quantity: 1,
@@ -23,7 +23,7 @@ const emptyStuff = {
 const demoStuff = {
   name: 'Love Letter Premium',
   description: 'It is presented in a deluxe box with a magnetic clasp featuring a special red velvet tray for storage. Inside you’ll find tarot-sized cards and sleeves for both the classic love letter card set and an all new extension to the game that enables play for up to 8 players.',
-  last_used: '27.80',
+  last_used: moment().format('YYYY-MM-DD'),
   price: 27.80,
   image_url: 'https://images.zmangames.com/filer_public/d4/68/d468258a-f378-42b2-bfcc-e7497db6febf/llp_boxfront_520px.png',
   quantity: 1,
