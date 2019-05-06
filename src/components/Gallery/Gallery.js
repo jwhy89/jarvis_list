@@ -4,8 +4,8 @@ import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import MobileStepper from '@material-ui/core/MobileStepper';
-import Paper from '@material-ui/core/Paper';
-import Typography from '@material-ui/core/Typography';
+// import Paper from '@material-ui/core/Paper';
+// import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft';
 import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
@@ -73,10 +73,10 @@ class Gallery extends React.Component {
     return (
       <>
         {/* <h1>{JSON.stringify(`thing: ${stuffQ}`)}</h1> */}
-        <div className={classes.root}>
-          <Paper square elevation={0} className={classes.header}>
-            <Typography>{stuffName}</Typography>
-          </Paper>
+        <div className={classes.root} style={{textAlign: 'center'}}>
+          <h2>
+            {stuffName}
+          </h2>
           <AutoPlaySwipeableViews
             style={{ display: 'flex' }}
             axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
@@ -92,6 +92,8 @@ class Gallery extends React.Component {
               </div>
             ))}
           </AutoPlaySwipeableViews>
+          {/* Can remove the MobileStepper when StuffList gets too big
+          The stepper dots will outgrow the page */}
           <MobileStepper
             steps={maxSteps}
             position="static"
