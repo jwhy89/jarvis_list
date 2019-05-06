@@ -22,7 +22,8 @@ const emptyStuff = {
 
 class AddStuffForm extends Component {
   state = {
-    newStuff: emptyStuff
+    newStuff: emptyStuff,
+    flashMessage: ''
   }
 
   // Load tags before rendering
@@ -45,13 +46,22 @@ class AddStuffForm extends Component {
   }
   }
 
+  // message to confirm that stuff was added
+  flashMessage = (message) => {
+    this.setState({ flashMessage: message });
+    setTimeout(() => {
+      this.setState({ flashMessage: '' });
+    }, 2500)
+  }
+
   // Called when the submit button is pressed
   handleSubmit = event => {
-      event.preventDefault();
-      this.props.dispatch({ type: 'ADD_STUFF', payload: this.state.newStuff })
-      this.setState({
-          ...emptyStuff
+    event.preventDefault();
+    this.props.dispatch({ type: 'ADD_STUFF', payload: this.state.newStuff })
+    this.setState({
+        ...emptyStuff
     })
+    this.flashMessage('Stuff successfully ADDED!');
   }
 
   render() {
@@ -180,6 +190,11 @@ class AddStuffForm extends Component {
                     variant="contained"
                     style={{ backgroundColor: 'orange' }}
                     onClick={this.handleSubmit}><AddIcon/>Add New Stuff</Button>
+                  { 
+                  (this.state.flashMessage)
+                    ? <p className='flash'>{ this.state.flashMessage }</p>
+                    : null
+                  }
               </FormControl>
               </Grid>
             </Grid>

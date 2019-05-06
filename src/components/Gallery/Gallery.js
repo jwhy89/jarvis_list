@@ -78,6 +78,7 @@ class Gallery extends React.Component {
             <Typography>{stuffName}</Typography>
           </Paper>
           <AutoPlaySwipeableViews
+            style={{ display: 'flex' }}
             axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
             index={activeStep}
             onChangeIndex={this.handleStepChange}
