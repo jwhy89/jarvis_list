@@ -92,9 +92,10 @@ class Gallery extends React.Component {
               </div>
             ))}
           </AutoPlaySwipeableViews>
-          {/* Can remove the MobileStepper when StuffList gets too big
-          The stepper dots will outgrow the page */}
+          {/* Can change variant to text or progress in the MobileStepper when 
+          StuffList gets too big. The stepper dots will outgrow the page */}
           <MobileStepper
+            variant="dots"
             steps={maxSteps}
             position="static"
             activeStep={activeStep}
