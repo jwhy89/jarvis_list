@@ -15,7 +15,8 @@ class StuffDetails extends Component {
 
   state = {
     currentlyEditing: false,
-      editStuff: {},
+    editStuff: {},
+    flashMessage: ''
   }
 
   // function to get details from database and redux state before rendoring
@@ -56,6 +57,14 @@ class StuffDetails extends Component {
     console.log('in delete stuff', this.props.reduxState.details.id)
   }
 
+  // message to confirm  that stuff was edited
+  flashMessage = (message) => {
+    this.setState({ flashMessage: message });
+    setTimeout(() => {
+      this.setState({ flashMessage: '' });
+    }, 2500)
+  }
+
   // called when clicked on; will allow user to edit pre-populated field from reduxState
   handleEdit = (event) => {
     console.log('in handleEdit');
@@ -76,6 +85,7 @@ class StuffDetails extends Component {
         currentlyEditing: false,
     })
     this.props.dispatch({type:'EDIT_DETAILS', payload: this.state.editStuff});
+    this.flashMessage('Stuff successfully updated!');
   }
 
   // Called when the submit button is pressed
@@ -125,6 +135,11 @@ class StuffDetails extends Component {
           <Grid item>
             {/* <h1>{JSON.stringify(this.props.reduxState.details.name)}</h1> */}
             <h1 style={{textAlign: 'center'}}>{stuff.name}</h1>
+            { 
+            (this.state.flashMessage)
+              ? <p className='flash'>{ this.state.flashMessage }</p>
+              : null
+            }
             { this.state.currentlyEditing === true ? 
               <>
               <div className="edit-buttons">
