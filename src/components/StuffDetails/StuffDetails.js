@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { Button, TextField, Grid, FormControl } from '@material-ui/core';
+import './StuffDetails.css';
 // @material-ui/icons
 import Deleted from "@material-ui/icons/DeleteOutlineRounded";
 import EditIcon from "@material-ui/icons/EditRounded";
@@ -100,8 +101,9 @@ class StuffDetails extends Component {
 
   render() {
     const stuff = this.props.reduxState.details;
-    console.log(this.state.editStuff.name)
+    console.log(this.state.editStuff.image_url)
     // console.log(this.state.editStuff)
+    
     return (
       <Grid container
       direction="row"
@@ -123,34 +125,43 @@ class StuffDetails extends Component {
             <h1 style={{textAlign: 'center'}}>{stuff.name}</h1>
             { this.state.currentlyEditing === true ? 
               <>
-              <Button variant="contained" style={{ backgroundColor: 'green' }} onClick={this.handleEditSubmit}><UpdateIcon/>Update</Button>  
-              <Button variant="contained" onClick={this.handleEditCancel}><CancelIcon/>Cancel</Button>
+              <div className="edit-buttons">
+                <div className="update-button">
+                <Button variant="contained" style={{ backgroundColor: 'green' }} onClick={this.handleEditSubmit}><UpdateIcon/>Update</Button>
+                </div>
+                <div>
+                <Button variant="contained" onClick={this.handleEditCancel}><CancelIcon/>Cancel</Button>
+                </div>
+              </div>
               </> :
-              <Button variant="contained" style={{ backgroundColor: 'orange' }} onClick={this.handleEdit}><EditIcon/>Edit</Button>
+              <Button variant="contained" style={{ backgroundColor: 'orange', textAlign: 'right'}} onClick={this.handleEdit}><EditIcon/>Edit</Button>
             }
           </Grid>
-          <Grid item>
+          <Grid item >
             <img src={stuff.image_url} alt={stuff.name}
-             style={{width: '100%', height: 400, diplay: 'flex'}}/>
+             style={{width: '100%', height: 400, display: 'flex'}}/>
           </Grid>
-          <Grid item>
+          <Grid item style={{width: '100%'}}>
               <><span>ID: {stuff.id}</span><br /></>
               {this.state.currentlyEditing === true ?
               <>
-              <FormControl onSubmit={this.handleSubmit}>
+              <FormControl style={{ display: 'flex' }} onSubmit={this.handleSubmit}>
               <TextField
                 label="Edit Name"
                 onChange={this.handleChange('name')} 
                 defaultValue={`${stuff.name}`}
                 margin="dense"
-                variant="filled"/>
+                variant="filled"
+                fullWidth="true"/>
               <br />
               <TextField
                 label="Edit Description"
                 onChange={this.handleChange('description')} 
                 defaultValue={`${stuff.description}`}
                 margin="dense"
-                variant="filled"/>
+                variant="filled"
+                fullWidth="true"
+                multiline="true"/>
               <br />
               <TextField
                 label="Last Used"
@@ -158,7 +169,8 @@ class StuffDetails extends Component {
                 defaultValue={moment().format('YYYY-MM-DD')}
                 onChange={this.handleChange('last_used')}
                 margin="dense"
-                variant="filled"/>
+                variant="filled"
+                fullWidth="true"/>
               <br />
               <TextField
                 label="Price $"
@@ -166,7 +178,8 @@ class StuffDetails extends Component {
                 onChange={this.handleChange('price')}
                 defaultValue={`${stuff.price}`}
                 margin="dense"
-                variant="filled"/>
+                variant="filled"
+                fullWidth="true"/>
               <br />
               <TextField
                 label="Image URL"
@@ -174,7 +187,8 @@ class StuffDetails extends Component {
                 onChange={this.handleChange('image_url')}
                 defaultValue={`${stuff.image_url}`}
                 margin="dense"
-                variant="filled"/>
+                variant="filled"
+                fullWidth="true"/>
               <br />
               <TextField
                 label="Edit Quantity"
@@ -182,7 +196,8 @@ class StuffDetails extends Component {
                 onChange={this.handleChange('quantity')}
                 defaultValue={`${stuff.quantity}`}
                 margin="dense"
-                variant="filled"/>
+                variant="filled"
+                fullWidth="true"/>
               <br />
               <label selected disabled >Type</label>
               <select
@@ -222,15 +237,24 @@ class StuffDetails extends Component {
               </FormControl>
               </> :
               <>
-                <span>Stuff Name: {stuff.name}</span><br />
-                <span>Description: {stuff.description}</span><br />
-                <span>Last Used: {moment(stuff.last_used).format('YYYY-MM-DD')}</span><br />
-                <span>Price: {stuff.price}</span><br />
-                <span>Image URL: {stuff.image_url}</span><br />
-                <span>Quantity: {stuff.quantity} {stuff.type}</span><br />
-                <span>Physical State: {stuff.physical_state}</span><br />
-                <span>Status: {stuff.status}</span><br />
-                <span>Active/Inactive: {JSON.stringify(stuff.active)}</span><br /><br />
+              <Grid item>
+                <div>Stuff Name: {stuff.name}</div><br />
+                <div>Description: {stuff.description}</div><br />
+                <div>Last Used: {moment(stuff.last_used).format('YYYY-MM-DD')}</div><br />
+                <div>Price: {stuff.price}</div><br />
+                <TextField
+                  label="Image URL"
+                  type="url"
+                  defaultValue={`${stuff.image_url}`}
+                  margin="dense"
+                  variant="filled"
+                  fullWidth="true"/>
+                <br />
+                <div>Quantity: {stuff.quantity} {stuff.type}</div><br />
+                <div>Physical State: {stuff.physical_state}</div><br />
+                <div>Status: {stuff.status}</div><br />
+                <div>Active/Inactive: {JSON.stringify(stuff.active)}</div><br /><br />
+              </Grid>
               </>}
           </Grid>
             <Button variant="contained" style={{ backgroundColor: 'red' }} onClick={() => this.deleteStuff()}><Deleted/>Delete</Button>

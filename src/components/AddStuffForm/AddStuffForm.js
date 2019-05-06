@@ -74,7 +74,7 @@ class AddStuffForm extends Component {
               <Grid item align="center">
               <h3>Add Stuff:</h3>
               {/* <pre>{JSON.stringify(this.state)}</pre> */}
-              <FormControl onSubmit={this.handleSubmit}>
+              <FormControl style={{ display: 'flex' }} onSubmit={this.handleSubmit}>
                   <TextField
                     label="Stuff Name"
                     type="text"
@@ -82,6 +82,7 @@ class AddStuffForm extends Component {
                     onChange={this.handleNameChange('name')}
                     margin="dense"
                     variant="filled"
+                    fullWidth="true"
                   />
                   <br />
                   <TextField
@@ -91,6 +92,8 @@ class AddStuffForm extends Component {
                     onChange={this.handleNameChange('description')}
                     margin="dense"
                     variant="filled"
+                    fullWidth="true"
+                    multiline="true"
                   />
                   <br />
                   <TextField
@@ -101,6 +104,7 @@ class AddStuffForm extends Component {
                     onChange={this.handleNameChange('last_used')}
                     margin="dense"
                     variant="filled"
+                    fullWidth="true"
                   />
                   <br />
                   <TextField
@@ -110,6 +114,7 @@ class AddStuffForm extends Component {
                     onChange={this.handleNameChange('price')}
                     margin="dense"
                     variant="filled"
+                    fullWidth="true"
                   />
                   <br />
                   <TextField
@@ -119,6 +124,7 @@ class AddStuffForm extends Component {
                     onChange={this.handleNameChange('image_url')}
                     margin="dense"
                     variant="filled"
+                    fullWidth="true"
                   />
                   <br />
                   <TextField
@@ -128,9 +134,11 @@ class AddStuffForm extends Component {
                     onChange={this.handleNameChange('quantity')}
                     margin="dense"
                     variant="filled"
+                    fullWidth="true"
                   />
                   <br />
-                  <Select 
+                  <Select
+                    fullWidth="true"
                     value={this.state.newStuff.quantity_type_id}
                     onChange={this.handleNameChange('quantity_type_id')} >
                       <InputLabel selected disabled >Type</InputLabel>
@@ -140,6 +148,7 @@ class AddStuffForm extends Component {
                   </Select>
                   <br />
                   <Select
+                    fullWidth="true"
                     value={this.state.newStuff.physical_or_digital_id}
                     onChange={this.handleNameChange('physical_or_digital_id')}>
                       <InputLabel selected disabled >Physical/Digital</InputLabel>
@@ -149,6 +158,7 @@ class AddStuffForm extends Component {
                   </Select>
                   <br />
                   <Select
+                    fullWidth="true"
                     value={this.state.newStuff.status_id}
                     onChange={this.handleNameChange('status_id')}>
                       <InputLabel selected disabled >Status</InputLabel>
@@ -158,6 +168,7 @@ class AddStuffForm extends Component {
                   </Select>
                   <br />
                   <Select
+                    fullWidth="true"
                     value={this.state.newStuff.active}
                     onChange={this.handleNameChange('active')} >
                       <InputLabel selected disabled >Active/Inactive:</InputLabel>
