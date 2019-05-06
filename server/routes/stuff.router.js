@@ -15,7 +15,7 @@ router.get('/', rejectUnauthenticated, (req, res) => {
                 JOIN "user" ON "stuff"."user_id" = "user"."id"
                 JOIN "status" ON "stuff"."status_id" =  "status"."id" 
                 WHERE "stuff"."user_id" = $1
-                ORDER BY "stuff"."name" ASC;`, [req.user.id])
+                ORDER BY "stuff"."last_used" ASC;`, [req.user.id])
         .then(results => res.send(results.rows))
         .catch(error => {
             console.log('Error making SELECT for stuff:', error);
