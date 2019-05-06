@@ -247,10 +247,10 @@ class StuffDetails extends Component {
                 <TextField
                   label="Image URL"
                   type="url"
-                  defaultValue={`${stuff.image_url}`}
+                  value={`${stuff.image_url}`}
                   margin="dense"
                   variant="filled"
-                  fullWidth="true"/>
+                  fullWidth={true}/>
                 <br />
                 <div>Quantity: {stuff.quantity} {stuff.type}</div><br />
                 <div>Physical State: {stuff.physical_state}</div><br />
