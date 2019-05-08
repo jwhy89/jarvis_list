@@ -37,3 +37,6 @@ const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
   console.log(`Listening on port: ${PORT}`);
 });
+
+// Export our app so that we can use it in tests
+module.exports = app;
