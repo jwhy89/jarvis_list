@@ -33,14 +33,16 @@
     "client": "react-scripts start",
     "server": "nodemon --watch server server/server.js",
     "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
+    "test": "jest",
     "eject": "react-scripts eject"
   },
   "devDependencies": {
     "babel-eslint": "^10.0.1",
     "eslint": "^5.16.0",
     "eslint-plugin-react": "^7.13.0",
-    "nodemon": "^1.18.10"
+    "jest": "^24.8.0",
+    "nodemon": "^1.18.10",
+    "supertest": "^4.0.2"
   },
   "browserslist": [
     ">0.2%",
