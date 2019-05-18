@@ -115,6 +115,7 @@ class Gallery extends React.Component {
           />
           </div>
           <GalleryList />
+          <br/>
         </>
     );
   }

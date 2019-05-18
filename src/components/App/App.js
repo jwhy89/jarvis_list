@@ -9,7 +9,7 @@ import {
 import {connect} from 'react-redux';
 
 import Nav from '../Nav/Nav';
-import Footer from '../Footer/Footer';
+// import Footer from '../Footer/Footer';
 
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 
@@ -80,7 +80,7 @@ class App extends Component {
                     {/* If none of the other routes matched, we will show a 404. */}
                     <Route render={() => <h1>Error 404 View (Page Doesn't Exist)</h1>} />
                   </Switch>
-                <Footer />
+                
                 </Paper>
               </Grid>
 
@@ -88,7 +88,7 @@ class App extends Component {
           </Grid>
 
         </Grid>
-
+        {/* <Footer /> */}
       </Router>
   )}
 }
